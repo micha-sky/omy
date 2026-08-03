@@ -17,6 +17,7 @@ export type Project = {
   images?: { src: string; alt: string }[];
   audio?: { title: string; src: string }[];
   soundcloud?: { url: string; height?: number }[];
+  youtube?: string;    // YouTube video id, embedded 16:9
   links?: { label: string; url: string }[];
   todo?: string;       // visible "to confirm" flag on the detail page
   featured?: boolean;  // pinned on the home page (SYMBIONT)
@@ -117,6 +118,26 @@ export const projects: Project[] = [
       ["With", "Helena Aljona Kühn"],
       ["Support", "Fonds Darstellende Künste (Take Heart)"],
       ["Status", "Ongoing since 2022"],
+    ],
+  },
+  {
+    slug: "pose-dia-phoenix",
+    title: "Pose Dia — Phoenix",
+    sort: "2023-06-30",
+    yearLabel: "2023",
+    category: "Music video",
+    role: "VFX & 3D scan",
+    summary: "VFX and 3D scanning for the official video of Pose Dia's “Phoenix.”",
+    body: [
+      "VFX and 3D-scan work for the official music video of “Phoenix” by Pose Dia.",
+    ],
+    credits: [
+      ["Artist", "Pose Dia"],
+      ["Released", "30 June 2023"],
+    ],
+    youtube: "BWPDmFROIRk",
+    links: [
+      { label: "Watch on YouTube", url: "https://www.youtube.com/watch?v=BWPDmFROIRk" },
     ],
   },
   {
