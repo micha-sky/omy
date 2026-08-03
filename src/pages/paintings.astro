@@ -1,0 +1,62 @@
+---
+import Base from "../layouts/Base.astro";
+
+// Web-optimised in public/images/paintings. Widths/heights are the native
+// pixel sizes — each work is capped at its own resolution so nothing upscales.
+const paintings = [
+  { src: "/images/paintings/painting-01.jpg", w: 1650, h: 2200, alt: "Painting over a Ukrainian income-tax ledger — “love thy neighbour” in blue, pink and black" },
+  { src: "/images/paintings/painting-02.jpg", w: 2200, h: 1650, alt: "Blue-and-yellow spray-painted ledger spread with black and white splatters" },
+  { src: "/images/paintings/painting-03.jpg", w: 265, h: 325, alt: "Red intervention over an appropriated photograph" },
+  { src: "/images/paintings/painting-04.jpg", w: 311, h: 310, alt: "Red splatters over an appropriated photograph" },
+];
+---
+
+<Base title="Oleksandr Mykhalskyi — Paintings" active="Paintings">
+  <section class="paint wrap">
+    <header class="pt-head">
+      <p class="eyebrow">Painting · Intervention on found matter</p>
+      <h1 class="display distort">Paintings</h1>
+      <p class="prose pt-intro">
+        Painting and intervention on found documents and images — Ukrainian
+        ledgers and tax forms, appropriated photographs — worked over in paint.
+      </p>
+    </header>
+
+    <div class="gallery">
+      {paintings.map((p, i) => (
+        <figure class="work" style={`max-width: min(100%, ${p.w}px)`}>
+          <img
+            src={p.src}
+            alt={p.alt}
+            width={p.w}
+            height={p.h}
+            style={`aspect-ratio: ${p.w} / ${p.h}`}
+            loading={i === 0 ? "eager" : "lazy"}
+            decoding="async"
+          />
+        </figure>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .paint { padding-top: 3rem; padding-bottom: 4rem; }
+  .pt-head { margin-bottom: 3.5rem; max-width: 44rem; }
+  .pt-head .eyebrow { display: block; margin-bottom: 1rem; }
+  .pt-intro { margin-top: 1.6rem; color: var(--ink-soft); }
+
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(3rem, 7vw, 6rem);
+  }
+  .work { margin: 0; width: 100%; }
+  .work img {
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.08);
+  }
+</style>
