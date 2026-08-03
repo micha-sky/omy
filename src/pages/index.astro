@@ -1,0 +1,144 @@
+---
+import Base from "../layouts/Base.astro";
+
+const tracks = [
+  { title: "Apollonia war gar nicht da", src: "/audio/apollonia-war-gar-nicht-da.mp3" },
+  { title: "Elbstrand", src: "/audio/elbstrand.mp3" },
+  { title: "Lang Dings muss gut Weile", src: "/audio/lang-dings-muss-gut-weile.mp3" },
+  { title: "Tennistunier", src: "/audio/tennistunier.mp3" },
+];
+---
+
+<Base title="Oleksandr Mykhalskyi — Work" active="Work">
+  <!-- ── Thesis: must land in under 30 seconds ── -->
+  <section class="hero wrap">
+    <p class="eyebrow">Guitarist · Artist · Live-improvised systems</p>
+    <h1 class="display distort">
+      I play in an improvising trio.<br />
+      Then I swap the players<br />
+      for a <span class="accent">living system</span>.
+    </h1>
+    <p class="lede prose">
+      For years I have been the guitarist in a live-improvised trio. My work now
+      builds instruments where the improvising partner is no longer a person but
+      a living system — an EEG signal, a plant, a room. Same listening, same
+      risk, same refusal to fix the outcome in advance. <strong>SYMBIONT</strong>
+      is not a change of career. It is the same practice, extended to a stranger
+      partner.
+    </p>
+  </section>
+
+  <hr class="rule wrap" style="max-width: 68rem;" />
+
+  <!-- ── Die Deutsche Post Punk ── -->
+  <section class="work wrap">
+    <div class="work-head">
+      <div>
+        <p class="eyebrow">Band · Live improvisation · Guitar</p>
+        <h2 class="display distort-light">Die Deutsche Post Punk</h2>
+        <p class="prose">
+          A live-improvised trio. Nothing is written down; each set is decided in
+          the room, in real time, between three listeners. This is the practice
+          everything else grows out of.
+        </p>
+      </div>
+      <dl class="spec">
+        <dt>Format</dt><dd>Trio · fully improvised</dd>
+        <dt>Role</dt><dd>Guitar</dd>
+        <dt>Recorded</dt><dd>Live, Hamburg</dd>
+      </dl>
+    </div>
+
+    <ol class="tracks mono">
+      {tracks.map((t, i) => (
+        <li class="track">
+          <span class="track-n">{String(i + 1).padStart(2, "0")}</span>
+          <span class="track-title">{t.title}</span>
+          <audio controls preload="none" src={t.src}></audio>
+        </li>
+      ))}
+    </ol>
+
+    <div class="shots">
+      <img src="/images/dpp-1.jpg" alt="Die Deutsche Post Punk performing live" loading="lazy" />
+      <img src="/images/dpp-2.jpg" alt="Die Deutsche Post Punk performing live" loading="lazy" />
+      <img src="/images/dpp-3.jpg" alt="Die Deutsche Post Punk performing live" loading="lazy" />
+    </div>
+  </section>
+
+  <!-- ── SYMBIONT teaser (page ships only when it has media) ── -->
+  <section class="teaser wrap">
+    <p class="eyebrow">In progress</p>
+    <h2 class="display distort-light">SYMBIONT</h2>
+    <p class="prose">
+      An instrument that renders a living system's signal as sound in real time —
+      EEG to stereo audio, in the browser. Documentation is being recorded now.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .hero { padding-top: 3rem; padding-bottom: 3.5rem; }
+  .hero .eyebrow { margin-bottom: 1.4rem; display: block; }
+  .lede { margin-top: 2rem; color: var(--ink-soft); }
+  .lede strong { color: var(--ink); font-weight: 400; }
+
+  .work { padding-top: 3rem; }
+  .work-head {
+    display: grid;
+    grid-template-columns: 1fr minmax(12rem, 16rem);
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 3rem;
+  }
+  .work-head h2 { margin: 0.6rem 0 1rem; }
+
+  .tracks { list-style: none; margin: 0 0 3rem; padding: 0; }
+  .track {
+    display: grid;
+    grid-template-columns: 2.2rem 1fr;
+    grid-template-areas: "n title" ". audio";
+    gap: 0.4rem 0.6rem;
+    align-items: center;
+    padding: 1rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  .track:last-child { border-bottom: 1px solid var(--rule); }
+  .track-n { grid-area: n; color: var(--red); }
+  .track-title {
+    grid-area: title;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+  .track audio {
+    grid-area: audio;
+    width: 100%;
+    max-width: 30rem;
+    height: 2.2rem;
+    margin-top: 0.4rem;
+  }
+
+  .shots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  .shots img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.02);
+    transition: filter 0.4s ease;
+  }
+  .shots img:hover { filter: grayscale(0); }
+
+  .teaser { padding-top: 5rem; }
+  .teaser h2 { margin: 0.6rem 0 1rem; color: var(--ink-faint); }
+
+  @media (max-width: 720px) {
+    .work-head { grid-template-columns: 1fr; gap: 1.6rem; }
+    .shots { grid-template-columns: 1fr 1fr; }
+  }
+</style>

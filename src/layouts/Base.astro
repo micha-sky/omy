@@ -1,0 +1,181 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  active?: string;
+}
+
+const {
+  title,
+  description = "Oleksandr Mykhalskyi — guitarist and artist building systems where the improvising partner is a living system: an EEG signal, a plant, a room.",
+  active = "",
+} = Astro.props;
+
+const nav = [
+  { href: "/", label: "Work" },
+  { href: "/statement", label: "Statement" },
+  { href: "/cv", label: "CV" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23dc2626'>◆</text></svg>" />
+  </head>
+  <body>
+    <!-- Distortion filters: the signature effect. Animated toward the cursor. -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <filter id="distort" x="0" y="0">
+        <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="distort-light" x="0" y="0">
+        <feTurbulence type="fractalNoise" baseFrequency="0.0075" numOctaves="2" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+      <filter id="distort-strong" x="0" y="0">
+        <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </svg>
+
+    <div class="shell">
+      <header class="topbar wrap">
+        <a href="/" class="brand display distort-light" aria-label="Oleksandr Mykhalskyi — home">
+          Oleksandr<br />Mykhalskyi
+        </a>
+        <nav class="nav" aria-label="Primary">
+          {nav.map((item) => (
+            <a
+              href={item.href}
+              class:list={["nav-link", "mono", { current: active === item.label }]}
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer class="footer wrap mono">
+        <span>Oleksandr Mykhalskyi</span>
+        <span class="footer-sec">
+          <a href="https://instagram.com/oooohshitdawg">@oooohshitdawg</a>
+        </span>
+      </footer>
+    </div>
+
+    <style>
+      .shell {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem;
+        padding-top: 2.2rem;
+        padding-bottom: 2.2rem;
+      }
+      .brand {
+        font-size: 1.15rem;
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+      .brand:hover { color: var(--red); }
+      .nav {
+        display: flex;
+        gap: 1.6rem;
+        padding-top: 0.35rem;
+      }
+      .nav-link {
+        color: var(--ink-soft);
+        transition: color 0.15s ease;
+      }
+      .nav-link:hover { color: var(--red); }
+      .nav-link.current { color: var(--red); }
+      main { flex: 1 0 auto; }
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding-top: 3rem;
+        padding-bottom: 2.5rem;
+        margin-top: 5rem;
+        color: var(--ink-faint);
+      }
+      .footer a:hover { color: var(--red); }
+      @media (max-width: 640px) {
+        .topbar { flex-direction: column; gap: 1.2rem; }
+        .nav { padding-top: 0; }
+      }
+    </style>
+
+    <script>
+      // Port of the sannaleone GlobalDistortion effect (vanilla).
+      // Eases the turbulence/displacement toward the cursor each frame.
+      (() => {
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+        if (reduce.matches) return;
+
+        const turb = {
+          distort: document.querySelector("#distort feTurbulence"),
+          strong: document.querySelector("#distort-strong feTurbulence"),
+        };
+        const disp = {
+          distort: document.querySelector("#distort feDisplacementMap"),
+          strong: document.querySelector("#distort-strong feDisplacementMap"),
+        };
+        if (!turb.distort) return;
+
+        const clamp = (v, min = 0, max = 1) => Math.min(Math.max(v, min), max);
+        const current = { x: 0.5, y: 0.5 };
+        const target = { x: 0.5, y: 0.5 };
+
+        const apply = (x, y) => {
+          const nx = clamp(x), ny = clamp(y);
+          const scale = 6 + nx * 12;            // 6 → 18
+          const bf = 0.01 + ny * 0.02;          // 0.01 → 0.03
+          const sScale = 8 + nx * 18;           // 8 → 26
+          const sBf = 0.02 + ny * 0.04;         // 0.02 → 0.06
+          disp.distort.setAttribute("scale", scale.toFixed(2));
+          turb.distort.setAttribute("baseFrequency", bf.toFixed(4));
+          disp.strong.setAttribute("scale", sScale.toFixed(2));
+          turb.strong.setAttribute("baseFrequency", sBf.toFixed(4));
+        };
+
+        const tick = () => {
+          current.x += (target.x - current.x) * 0.08;
+          current.y += (target.y - current.y) * 0.08;
+          apply(current.x, current.y);
+          requestAnimationFrame(tick);
+        };
+
+        window.addEventListener("mousemove", (e) => {
+          target.x = e.clientX / window.innerWidth;
+          target.y = e.clientY / window.innerHeight;
+        });
+        window.addEventListener("deviceorientation", (e) => {
+          if (typeof e.beta !== "number" || typeof e.gamma !== "number") return;
+          target.x = clamp((e.gamma + 90) / 180);
+          target.y = clamp((e.beta + 180) / 360);
+        });
+
+        requestAnimationFrame(tick);
+      })();
+    </script>
+  </body>
+</html>

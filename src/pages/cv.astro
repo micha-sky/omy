@@ -1,0 +1,138 @@
+---
+import Base from "../layouts/Base.astro";
+
+// Confirmed entries only. Items still needing facts from the artist are
+// rendered as visible "to confirm" rows (see the `todo` flag) so nothing
+// unverified is presented as fact. Fill these in and drop the flag.
+const work = [
+  {
+    year: "ongoing",
+    title: "SYMBIONT",
+    note: "Biofeedback-driven instrument — a living system (EEG, plant, room) as the improvising partner. Includes braino, a standalone EEG-to-sound engine in the browser.",
+  },
+  {
+    year: "ongoing",
+    title: "Die Deutsche Post Punk",
+    note: "Guitarist in a live-improvised trio. Hamburg.",
+  },
+];
+
+const performances = [
+  { year: "2023", title: "Mihara / Paris", note: "Video by Cassian Thomas De Cruz.", todo: "confirm date (23 June 2023), video URL & press links" },
+  { year: "—", title: "Volksbühne", note: "", todo: "confirm date; DPP concert or larger production" },
+  { year: "—", title: "Solid·Air festival", note: "", todo: "confirm role — performance / score / sound design" },
+  { year: "—", title: "448 Psychose", note: "", todo: "confirm what this is / spelling" },
+];
+
+const recordings = [
+  { year: "—", title: "Magdeburg 96", note: "", todo: "released / unreleased / live-only — what exists to hear" },
+];
+---
+
+<Base title="Oleksandr Mykhalskyi — CV" active="CV">
+  <div class="cv wrap">
+    <header class="cv-head">
+      <p class="eyebrow">Curriculum</p>
+      <h1 class="display distort">Oleksandr Mykhalskyi</h1>
+      <p class="prose bio">
+        Guitarist and sound artist from Lviv, based between Hamburg and Gießen.
+        Improviser first; builds instruments where the improvising partner is a
+        living system.
+      </p>
+    </header>
+
+    <section class="cv-sec">
+      <h2 class="mono sec-title">Work</h2>
+      <dl class="entries">
+        {work.map((e) => (
+          <div class="entry">
+            <dt class="mono year">{e.year}</dt>
+            <dd>
+              <span class="e-title display distort-light">{e.title}</span>
+              {e.note && <span class="e-note">{e.note}</span>}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <section class="cv-sec">
+      <h2 class="mono sec-title">Performances</h2>
+      <dl class="entries">
+        {performances.map((e) => (
+          <div class="entry">
+            <dt class="mono year">{e.year}</dt>
+            <dd>
+              <span class="e-title display distort-light">{e.title}</span>
+              {e.note && <span class="e-note">{e.note}</span>}
+              {e.todo && <span class="e-todo mono">to confirm — {e.todo}</span>}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <section class="cv-sec">
+      <h2 class="mono sec-title">Recordings</h2>
+      <dl class="entries">
+        {recordings.map((e) => (
+          <div class="entry">
+            <dt class="mono year">{e.year}</dt>
+            <dd>
+              <span class="e-title display distort-light">{e.title}</span>
+              {e.note && <span class="e-note">{e.note}</span>}
+              {e.todo && <span class="e-todo mono">to confirm — {e.todo}</span>}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <p class="contact mono">
+      <a href="https://instagram.com/oooohshitdawg">@oooohshitdawg</a>
+    </p>
+  </div>
+</Base>
+
+<style>
+  .cv { padding-top: 3rem; padding-bottom: 4rem; }
+  .cv-head { margin-bottom: 3.5rem; }
+  .cv-head .eyebrow { display: block; margin-bottom: 1.2rem; }
+  .bio { margin-top: 1.6rem; color: var(--ink-soft); max-width: 40rem; }
+
+  .cv-sec { margin-bottom: 3rem; }
+  .sec-title {
+    color: var(--red);
+    letter-spacing: 0.22em;
+    margin: 0 0 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .entries { margin: 0; }
+  .entry {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .year { color: var(--ink-faint); padding-top: 0.35rem; }
+  .entry dd { margin: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+  .e-title { font-size: 1.5rem; line-height: 1.1; }
+  .e-note { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5; }
+  .e-todo {
+    color: var(--ink-faint);
+    background: #fef2f2;
+    border-left: 2px solid var(--red);
+    padding: 0.3rem 0.7rem;
+    align-self: start;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+  .contact { margin-top: 2.5rem; }
+
+  @media (max-width: 560px) {
+    .entry { grid-template-columns: 1fr; gap: 0.4rem; }
+    .year { padding-top: 0; }
+  }
+</style>

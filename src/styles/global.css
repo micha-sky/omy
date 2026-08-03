@@ -1,0 +1,113 @@
+/* ── omy · Oleksandr Mykhalskyi ─────────────────────────────
+   Ground: white · Accent: red #dc2626 · Display: Sneaky-Times
+   Signature rule: the VOICE (display type) warps; the DATA
+   (monospace spec/caption blocks) holds still.
+   ──────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: "Sneaky Times";
+  src: url("/fonts/Sneaky-Times.woff2") format("woff2"),
+       url("/fonts/Sneaky-Times.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --ground: #ffffff;
+  --ink: #1a1a1a;
+  --ink-soft: #4b5563;   /* gray-600 */
+  --ink-faint: #9ca3af;  /* gray-400 */
+  --rule: #e5e7eb;       /* gray-200 */
+  --red: #dc2626;        /* red-600 */
+
+  --display: "Sneaky Times", "Times New Roman", serif;
+  --mono: "SFMono-Regular", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --measure: 42rem;
+  --pad: clamp(1.5rem, 5vw, 5rem);
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: clamp(1.05rem, 1rem + 0.4vw, 1.3rem);
+  line-height: 1.55;
+  letter-spacing: 0.005em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--red); }
+
+/* ── The distortion signature ─────────────────────────────── */
+.distort       { filter: url(#distort); }
+.distort-light { filter: url(#distort-light); }
+.distort-strong{ filter: url(#distort-strong); }
+
+@media (prefers-reduced-motion: reduce) {
+  .distort, .distort-light, .distort-strong { filter: none; }
+}
+
+/* ── Display type (the voice) ─────────────────────────────── */
+.display {
+  font-family: var(--display);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+
+h1.display { font-size: clamp(2.6rem, 1.8rem + 5vw, 6rem); }
+h2.display { font-size: clamp(1.8rem, 1.4rem + 2vw, 3rem); }
+
+.accent { color: var(--red); }
+
+/* ── Data type (the spec blocks — never distorted) ───────── */
+.mono {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.spec {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  border-left: 2px solid var(--red);
+  padding-left: 1.1rem;
+}
+
+.spec dt {
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.62rem;
+}
+.spec dd { margin: 0 0 0.9rem; color: var(--ink); }
+
+/* ── Layout scaffold ─────────────────────────────────────── */
+.wrap { max-width: 68rem; margin: 0 auto; padding: 0 var(--pad); }
+.prose { max-width: var(--measure); }
+.prose p { margin: 0 0 1.4rem; color: var(--ink); }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 4rem 0; }
