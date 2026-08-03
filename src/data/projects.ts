@@ -120,6 +120,30 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "drink-milk-not-oil",
+    title: "Drink Milk Not Oil",
+    sort: "2022-03-26",
+    yearLabel: "2022",
+    category: "Event",
+    role: "Organisation, 3D scan, performance, poster design",
+    summary:
+      "A solidarity fundraiser for Ukraine at Kunsthaus Hamburg — organised, performed, 3D-scanned and designed.",
+    body: [
+      "A fundraising concert for the people of Ukraine, held in the Halle of Kunsthaus Hamburg on 26 March 2022 — a collective response to Russia's invasion. All entrance fees and bar profits were donated: half directly to people in Ukrainian cities, half to NGOs supporting relief efforts.",
+      "I co-organised the evening and contributed across it — 3D scanning, performance, and the poster design — for a line-up of Hamburg live-electronic and DJ acts. The video was made in collaboration with Julian Huelser.",
+    ],
+    credits: [
+      ["Where", "Kunsthaus Hamburg (Halle)"],
+      ["When", "26 March 2022"],
+      ["Video", "with Julian Huelser"],
+      ["Co-organised with", "Lion Frenster, Philipp Kehder, Nikita Kotliar, Christopher Ramm"],
+    ],
+    video: "/video/drink-milk-not-oil.mp4",
+    links: [
+      { label: "Kunsthaus Hamburg", url: "https://kunsthaushamburg.de/veranstaltungen/drink-milk-not-oil-16706/" },
+    ],
+  },
+  {
     slug: "afw-analogfilmwerke",
     title: "AFW — live at Analogfilmwerke",
     sort: "2021-09-04",

@@ -8,11 +8,13 @@ const performance = byNewest.filter((p) =>
   ["Theatre", "Installation", "Performance"].includes(p.category)
 );
 const live = byNewest.filter((p) => p.category === "Live performance");
+const events = byNewest.filter((p) => p.category === "Event");
 
 const sections = [
   { title: "Work", items: work },
   { title: "Sound for performance", items: performance },
   { title: "Live performances", items: live },
+  { title: "Events & organising", items: events },
 ];
 ---
 
