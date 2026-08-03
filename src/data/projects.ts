@@ -12,6 +12,7 @@ export type Project = {
   category: string;    // small mono tag, e.g. "Theatre", "Live performance"
   role: string;
   summary: string;     // one line, shown in the work index
+  epigraph?: { quote: string; source: string };
   body: string[];      // paragraphs on the detail page
   credits: [string, string][];
   images?: { src: string; alt: string }[];
@@ -189,15 +190,27 @@ export const projects: Project[] = [
     role: "Composition & sound",
     summary:
       "Composition & sound for a Studienprojekt after Sarah Kane at Theaterakademie Hamburg.",
+    epigraph: {
+      quote:
+        "Frauen werden in diesem System chronisch falsch verstanden, falsch behandelt und falsch diagnostiziert.",
+      source: "Caroline Criado-Perez",
+    },
     body: [
-      "A queer-feminist reckoning with Sarah Kane's most fragmentary text — tracing the “invisible women” of a medical system that treats the male body as the default.",
-      "Staged as a 60-minute duet between one actress, one musician, and one text: a Studienprojekt at Theaterakademie Hamburg.",
+      "Sarah Kane's fragmentary text lets us look into the mind of a woman in psychic crisis, wrestling with the bitter incompatibility of body and soul. Against the backdrop of a medicine that treats the male body as the norm, we follow — through a weave of sound and poetic language — the trail of the wrongly diagnosed: the “hysterical”, the “invisible women”. Enraged, we rattle at the patriarchal system and pull the invisible into the spotlight.",
+      "Staged as a duet between one actress, one musician, and one text: a Studienprojekt at Theaterakademie Hamburg.",
     ],
     credits: [
       ["Direction", "Charlotte Heße"],
-      ["Performance", "Julia Buchmann"],
+      ["Dramaturgy", "Emily Richards"],
+      ["Stage", "Carl Fischer, Sarah Matthies"],
+      ["Costume", "Dina Polus, Duc-Thu Mach, Sara Bentivogli"],
+      ["Performance", "Julia Buchmann, Oleksandr Mykhalskyi"],
       ["Where", "Theaterakademie Hamburg"],
       ["When", "17–20 June 2021"],
+    ],
+    youtube: "mN-v-RCEi34",
+    links: [
+      { label: "Watch on YouTube", url: "https://www.youtube.com/watch?v=mN-v-RCEi34" },
     ],
   },
 ];

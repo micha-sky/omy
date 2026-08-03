@@ -27,6 +27,12 @@ const scEmbed = (url: string) =>
 
     <div class="d-grid">
       <div class="d-body prose">
+        {p.epigraph && (
+          <blockquote class="d-epigraph">
+            <p class="distort-light">“{p.epigraph.quote}”</p>
+            <cite class="mono">— {p.epigraph.source}</cite>
+          </blockquote>
+        )}
         {p.body.map((para) => <p>{para}</p>)}
 
         {p.video && (
@@ -130,6 +136,20 @@ const scEmbed = (url: string) =>
   }
   .d-body { max-width: 40rem; }
   .d-body p { color: var(--ink-soft); }
+
+  .d-epigraph {
+    margin: 0 0 2rem;
+    padding-left: 1.2rem;
+    border-left: 2px solid var(--red);
+  }
+  .d-epigraph p {
+    font-family: var(--display);
+    font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.7rem);
+    line-height: 1.25;
+    color: var(--ink) !important;
+    margin: 0 0 0.6rem;
+  }
+  .d-epigraph cite { color: var(--ink-faint); font-style: normal; }
 
   .d-video, .d-media, .d-embed { margin: 2rem 0; }
   .d-video { aspect-ratio: 16 / 10; background: #000; overflow: hidden; }
