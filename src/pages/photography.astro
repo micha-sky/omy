@@ -1,0 +1,191 @@
+---
+import Base from "../layouts/Base.astro";
+
+// Web-optimised film scans in public/images/analog (analog-01…14.jpg).
+const N = 14;
+const photos = Array.from({ length: N }, (_, i) =>
+  `/images/analog/analog-${String(i + 1).padStart(2, "0")}.jpg`
+);
+---
+
+<Base title="Oleksandr Mykhalskyi — Analog" active="Photography">
+  <!-- Dedicated warp filter for the slider (scale animates 0 → burst → 0). -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="photo-distort" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="2" result="n" />
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="0" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </svg>
+
+  <section class="photo wrap">
+    <header class="ph-head">
+      <p class="eyebrow">Photography · Film</p>
+      <h1 class="display distort">Analog</h1>
+    </header>
+
+    <div class="slider" id="slider">
+      <div class="viewport">
+        <div class="track" id="track">
+          {photos.map((src, i) => (
+            <figure class="slide">
+              <img src={src} alt={`Analog photograph ${i + 1}`} loading={i === 0 ? "eager" : "lazy"} draggable="false" />
+            </figure>
+          ))}
+        </div>
+      </div>
+
+      <button class="arrow prev" id="prev" aria-label="Previous photograph">←</button>
+      <button class="arrow next" id="next" aria-label="Next photograph">→</button>
+    </div>
+
+    <div class="meta mono">
+      <span><span id="cur">01</span> / {String(N).padStart(2, "0")}</span>
+      <span class="hint">drag · arrows · swipe</span>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .photo { padding-top: 3rem; padding-bottom: 4rem; }
+  .ph-head { margin-bottom: 2.5rem; }
+  .ph-head .eyebrow { display: block; margin-bottom: 1rem; }
+
+  .slider { position: relative; }
+  .viewport { overflow: hidden; touch-action: pan-y; cursor: grab; }
+  .viewport:active { cursor: grabbing; }
+  .track {
+    display: flex;
+    transition: transform 0.55s cubic-bezier(0.7, 0, 0.2, 1);
+    will-change: transform, filter;
+  }
+  .slide {
+    flex: 0 0 100%;
+    height: min(72vh, 820px);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.5rem;
+  }
+  .slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: 0;
+    font-family: var(--mono);
+    font-size: 1.4rem;
+    color: var(--ink-faint);
+    cursor: pointer;
+    padding: 0.6rem 0.9rem;
+    transition: color 0.15s ease;
+    z-index: 2;
+  }
+  .arrow:hover { color: var(--red); }
+  .prev { left: -0.5rem; }
+  .next { right: -0.5rem; }
+
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 1.5rem;
+    color: var(--ink-faint);
+  }
+  #cur { color: var(--red); }
+  .hint { letter-spacing: 0.18em; }
+
+  @media (max-width: 640px) {
+    .arrow { font-size: 1.1rem; }
+    .hint { display: none; }
+  }
+</style>
+
+<script>
+  (() => {
+    const track = document.getElementById("track");
+    const viewport = document.querySelector(".viewport") as HTMLElement | null;
+    const cur = document.getElementById("cur");
+    const prev = document.getElementById("prev");
+    const next = document.getElementById("next");
+    if (!track || !viewport || !cur) return;
+
+    const N = track.children.length;
+    const disp = document.querySelector("#photo-distort feDisplacementMap");
+    const turb = document.querySelector("#photo-distort feTurbulence");
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let idx = 0;
+
+    const render = () => {
+      track.style.transform = `translateX(${-idx * 100}%)`;
+      cur.textContent = String(idx + 1).padStart(2, "0");
+    };
+
+    // Momentary warp: displacement scale eases 0 → burst → 0 over the slide.
+    let rafId = 0;
+    let safety = 0;
+    const clearWarp = () => {
+      track.style.filter = "none";
+      disp?.setAttribute("scale", "0");
+    };
+    const warp = () => {
+      if (reduce || !disp || !turb) return;
+      cancelAnimationFrame(rafId);
+      clearTimeout(safety);
+      track.style.filter = "url(#photo-distort)";
+      const dur = 560;
+      const t0 = performance.now();
+      const tick = (now: number) => {
+        const p = Math.min((now - t0) / dur, 1);
+        const s = Math.sin(p * Math.PI) * 30; // 0 → 30 → 0
+        disp.setAttribute("scale", s.toFixed(1));
+        turb.setAttribute("baseFrequency", (0.008 + 0.018 * p).toFixed(4));
+        if (p < 1) rafId = requestAnimationFrame(tick);
+        else clearWarp();
+      };
+      rafId = requestAnimationFrame(tick);
+      // self-heal if RAF is throttled (e.g. background tab): clear anyway
+      safety = window.setTimeout(clearWarp, dur + 120);
+    };
+
+    const go = (n: number) => {
+      idx = (n + N) % N;
+      warp();
+      render();
+    };
+
+    prev?.addEventListener("click", () => go(idx - 1));
+    next?.addEventListener("click", () => go(idx + 1));
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") go(idx - 1);
+      if (e.key === "ArrowRight") go(idx + 1);
+    });
+
+    // Pointer drag / swipe (works for mouse and touch).
+    let downX = 0;
+    let dragging = false;
+    viewport.addEventListener("pointerdown", (e) => {
+      dragging = true;
+      downX = e.clientX;
+    });
+    const end = (e: PointerEvent) => {
+      if (!dragging) return;
+      dragging = false;
+      const dx = e.clientX - downX;
+      if (Math.abs(dx) > 45) go(dx < 0 ? idx + 1 : idx - 1);
+    };
+    viewport.addEventListener("pointerup", end);
+    viewport.addEventListener("pointercancel", () => (dragging = false));
+
+    render();
+  })();
+</script>
