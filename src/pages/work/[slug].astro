@@ -1,0 +1,151 @@
+---
+import Base from "../../layouts/Base.astro";
+import { projects, getProject } from "../../data/projects";
+
+export function getStaticPaths() {
+  return projects.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const p = getProject(slug!)!;
+
+const scEmbed = (url: string) =>
+  `https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}` +
+  `&color=%23dc2626&auto_play=false&hide_related=true&show_comments=false` +
+  `&show_user=true&show_reposts=false&show_teaser=false&visual=false`;
+---
+
+<Base title={`Oleksandr Mykhalskyi — ${p.title}`} active="Work">
+  <article class="detail wrap">
+    <a href="/" class="back mono">← Work</a>
+
+    <header class="d-head">
+      <p class="eyebrow">{p.category} · {p.yearLabel}</p>
+      <h1 class="display distort">{p.title}</h1>
+      {p.todo && <p class="d-todo mono">to confirm — {p.todo}</p>}
+    </header>
+
+    <div class="d-grid">
+      <div class="d-body prose">
+        {p.body.map((para) => <p>{para}</p>)}
+
+        {p.video && (
+          <div class="d-video">
+            <video src={p.video} autoplay muted loop playsinline preload="metadata"></video>
+          </div>
+        )}
+
+        {p.soundcloud && (
+          <div class="d-media">
+            {p.soundcloud.map((sc) => (
+              <iframe
+                class="sc"
+                width="100%"
+                height={sc.height ?? 166}
+                scrolling="no"
+                frameborder="no"
+                allow="autoplay"
+                loading="lazy"
+                src={scEmbed(sc.url)}
+                title={p.title}
+              ></iframe>
+            ))}
+          </div>
+        )}
+
+        {p.audio && (
+          <ol class="tracks mono">
+            {p.audio.map((t, i) => (
+              <li class="track">
+                <span class="track-n">{String(i + 1).padStart(2, "0")}</span>
+                <span class="track-title">{t.title}</span>
+                <audio controls preload="none" src={t.src}></audio>
+              </li>
+            ))}
+          </ol>
+        )}
+
+        {p.images && (
+          <div class="d-shots">
+            {p.images.map((im) => (
+              <img src={im.src} alt={im.alt} loading="lazy" />
+            ))}
+          </div>
+        )}
+
+        {p.links && (
+          <ul class="d-links mono">
+            {p.links.map((l) => (
+              <li><a href={l.url}>{l.label} ↗</a></li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      <aside class="d-side">
+        <dl class="spec">
+          <dt>Role</dt><dd>{p.role}</dd>
+          {p.credits.map(([k, v]) => (<><dt>{k}</dt><dd>{v}</dd></>))}
+        </dl>
+      </aside>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .detail { padding-top: 2.5rem; padding-bottom: 4rem; }
+  .back { color: var(--ink-faint); display: inline-block; margin-bottom: 2.5rem; }
+  .back:hover { color: var(--red); }
+
+  .d-head { margin-bottom: 3rem; }
+  .d-head .eyebrow { display: block; margin-bottom: 1rem; }
+  .d-todo {
+    margin-top: 1rem;
+    color: var(--ink-faint);
+    background: #fef2f2;
+    border-left: 2px solid var(--red);
+    padding: 0.3rem 0.7rem;
+    display: inline-block;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+
+  .d-grid {
+    display: grid;
+    grid-template-columns: 1fr minmax(13rem, 17rem);
+    gap: 3rem;
+    align-items: start;
+  }
+  .d-body { max-width: 40rem; }
+  .d-body p { color: var(--ink-soft); }
+
+  .d-video, .d-media { margin: 2rem 0; }
+  .d-video { aspect-ratio: 16 / 10; background: #000; overflow: hidden; }
+  .d-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .sc { display: block; border: 0; margin-bottom: 1rem; }
+
+  .tracks { list-style: none; margin: 2rem 0; padding: 0; }
+  .track {
+    display: grid;
+    grid-template-columns: 2.2rem 1fr;
+    grid-template-areas: "n title" ". audio";
+    gap: 0.4rem 0.6rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  .track:last-child { border-bottom: 1px solid var(--rule); }
+  .track-n { grid-area: n; color: var(--red); }
+  .track-title { grid-area: title; text-transform: none; letter-spacing: 0.02em; font-size: 0.9rem; color: var(--ink); }
+  .track audio { grid-area: audio; width: 100%; max-width: 30rem; height: 2.2rem; margin-top: 0.4rem; }
+
+  .d-shots { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 2rem 0; }
+  .d-shots img { width: 100%; object-fit: cover; }
+
+  .d-links { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .d-links a:hover { color: var(--red); }
+
+  @media (max-width: 720px) {
+    .d-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .d-side { order: -1; }
+  }
+</style>

@@ -1,31 +1,18 @@
 ---
 import Base from "../layouts/Base.astro";
+import { byNewest } from "../data/projects";
 
-// Confirmed entries only. Items still needing facts from the artist are
-// rendered as visible "to confirm" rows (see the `todo` flag) so nothing
-// unverified is presented as fact. Fill these in and drop the flag.
-const work = [
-  {
-    year: "ongoing",
-    title: "SYMBIONT",
-    note: "Biofeedback-driven instrument — a living system (EEG, plant, room) as the improvising partner. Includes braino, a standalone EEG-to-sound engine in the browser.",
-  },
-  {
-    year: "ongoing",
-    title: "Die Deutsche Post Punk",
-    note: "Guitarist in a live-improvised trio. Hamburg.",
-  },
-];
+// Sourced from the same data as the work pages so the CV never drifts.
+const work = byNewest.filter((p) => p.category === "Instrument");
+const performance = byNewest.filter((p) =>
+  ["Theatre", "Installation", "Performance"].includes(p.category)
+);
+const live = byNewest.filter((p) => p.category === "Live performance");
 
-const performances = [
-  { year: "2023", title: "Mihara / Paris", note: "Video by Cassian Thomas De Cruz.", todo: "confirm date (23 June 2023), video URL & press links" },
-  { year: "—", title: "Volksbühne", note: "", todo: "confirm date; DPP concert or larger production" },
-  { year: "—", title: "Solid·Air festival", note: "", todo: "confirm role — performance / score / sound design" },
-  { year: "—", title: "448 Psychose", note: "", todo: "confirm what this is / spelling" },
-];
-
-const recordings = [
-  { year: "—", title: "Magdeburg 96", note: "", todo: "released / unreleased / live-only — what exists to hear" },
+const sections = [
+  { title: "Work", items: work },
+  { title: "Sound for performance", items: performance },
+  { title: "Live performances", items: live },
 ];
 ---
 
@@ -35,58 +22,31 @@ const recordings = [
       <p class="eyebrow">Curriculum</p>
       <h1 class="display distort">Oleksandr Mykhalskyi</h1>
       <p class="prose bio">
-        Guitarist and sound artist from Lviv, based between Hamburg and Gießen.
-        Improviser first; builds instruments where the improvising partner is a
-        living system.
+        Composer and sound artist from Lviv, based between Hamburg and Gießen.
+        Makes sound for performance, theatre and installation, performs live as
+        Magdeburg 96, and builds instruments where the performer is a living
+        system.
       </p>
     </header>
 
-    <section class="cv-sec">
-      <h2 class="mono sec-title">Work</h2>
-      <dl class="entries">
-        {work.map((e) => (
-          <div class="entry">
-            <dt class="mono year">{e.year}</dt>
-            <dd>
-              <span class="e-title display distort-light">{e.title}</span>
-              {e.note && <span class="e-note">{e.note}</span>}
-            </dd>
-          </div>
-        ))}
-      </dl>
-    </section>
-
-    <section class="cv-sec">
-      <h2 class="mono sec-title">Performances</h2>
-      <dl class="entries">
-        {performances.map((e) => (
-          <div class="entry">
-            <dt class="mono year">{e.year}</dt>
-            <dd>
-              <span class="e-title display distort-light">{e.title}</span>
-              {e.note && <span class="e-note">{e.note}</span>}
-              {e.todo && <span class="e-todo mono">to confirm — {e.todo}</span>}
-            </dd>
-          </div>
-        ))}
-      </dl>
-    </section>
-
-    <section class="cv-sec">
-      <h2 class="mono sec-title">Recordings</h2>
-      <dl class="entries">
-        {recordings.map((e) => (
-          <div class="entry">
-            <dt class="mono year">{e.year}</dt>
-            <dd>
-              <span class="e-title display distort-light">{e.title}</span>
-              {e.note && <span class="e-note">{e.note}</span>}
-              {e.todo && <span class="e-todo mono">to confirm — {e.todo}</span>}
-            </dd>
-          </div>
-        ))}
-      </dl>
-    </section>
+    {sections.map((sec) => (
+      <section class="cv-sec">
+        <h2 class="mono sec-title">{sec.title}</h2>
+        <dl class="entries">
+          {sec.items.map((e) => (
+            <div class="entry">
+              <dt class="mono year">{e.yearLabel}</dt>
+              <dd>
+                <a class="e-title display distort-light" href={`/work/${e.slug}`}>{e.title}</a>
+                <span class="e-role mono">{e.role}</span>
+                <span class="e-note">{e.summary}</span>
+                {e.todo && <span class="e-todo mono">to confirm — {e.todo}</span>}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    ))}
 
     <p class="contact mono">
       <a href="https://instagram.com/oooohshitdawg">@oooohshitdawg</a>
@@ -98,7 +58,7 @@ const recordings = [
   .cv { padding-top: 3rem; padding-bottom: 4rem; }
   .cv-head { margin-bottom: 3.5rem; }
   .cv-head .eyebrow { display: block; margin-bottom: 1.2rem; }
-  .bio { margin-top: 1.6rem; color: var(--ink-soft); max-width: 40rem; }
+  .bio { margin-top: 1.6rem; color: var(--ink-soft); max-width: 42rem; }
 
   .cv-sec { margin-bottom: 3rem; }
   .sec-title {
@@ -113,12 +73,14 @@ const recordings = [
     display: grid;
     grid-template-columns: 6rem 1fr;
     gap: 1.5rem;
-    padding: 1rem 0;
+    padding: 1.1rem 0;
     border-bottom: 1px solid var(--rule);
   }
   .year { color: var(--ink-faint); padding-top: 0.35rem; }
   .entry dd { margin: 0; display: flex; flex-direction: column; gap: 0.35rem; }
-  .e-title { font-size: 1.5rem; line-height: 1.1; }
+  .e-title { font-size: 1.5rem; line-height: 1.1; width: fit-content; }
+  .e-title:hover { color: var(--red); }
+  .e-role { color: var(--red); }
   .e-note { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5; }
   .e-todo {
     color: var(--ink-faint);

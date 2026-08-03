@@ -1,2 +1,8 @@
 /node_modules
 *.mp3
+dist/
+.astro/
+.DS_Store
+.env
+.env.production
+npm-debug.log*

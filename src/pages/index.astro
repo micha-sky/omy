@@ -1,79 +1,64 @@
 ---
 import Base from "../layouts/Base.astro";
+import { byNewest, getProject } from "../data/projects";
 
-const tracks = [
-  { title: "Apollonia war gar nicht da", src: "/audio/apollonia-war-gar-nicht-da.mp3" },
-  { title: "Elbstrand", src: "/audio/elbstrand.mp3" },
-  { title: "Lang Dings muss gut Weile", src: "/audio/lang-dings-muss-gut-weile.mp3" },
-  { title: "Tennistunier", src: "/audio/tennistunier.mp3" },
-];
+const symbiont = getProject("symbiont")!;
+const rest = byNewest.filter((p) => p.slug !== "symbiont");
 ---
 
 <Base title="Oleksandr Mykhalskyi — Work" active="Work">
   <!-- ── Thesis: must land in under 30 seconds ── -->
   <section class="hero wrap">
-    <p class="eyebrow">Guitarist · Artist · Live-improvised systems</p>
+    <p class="eyebrow">Composer · Sound artist · Live performance & biofeedback</p>
     <h1 class="display distort">
-      I play in an improvising trio.<br />
-      Then I swap the players<br />
-      for a <span class="accent">living system</span>.
+      I make sound for live bodies,<br />
+      texts and rooms. Then I build<br />
+      instruments where the performer<br />
+      is a <span class="accent">living system</span>.
     </h1>
     <p class="lede prose">
-      For years I have been the guitarist in a live-improvised trio. My work now
-      builds instruments where the improvising partner is no longer a person but
-      a living system — an EEG signal, a plant, a room. Same listening, same
-      risk, same refusal to fix the outcome in advance. <strong>SYMBIONT</strong>
-      is not a change of career. It is the same practice, extended to a stranger
-      partner.
+      My work is composition and sound for performance — a fragmenting text, a
+      body in a dreamscape, a collective in catastrophe. <strong>SYMBIONT</strong>
+      keeps exactly that practice and swaps one performer for a living system:
+      an EEG signal, a plant, a room.
     </p>
+  </section>
+
+  <!-- ── SYMBIONT (featured) ── -->
+  <section class="symbiont wrap">
+    <a class="s-video" href={`/work/${symbiont.slug}`} aria-label="SYMBIONT">
+      <video src={symbiont.video} autoplay muted loop playsinline preload="metadata"></video>
+    </a>
+    <div class="s-text">
+      <p class="eyebrow">{symbiont.category}</p>
+      <h2 class="display distort"><a href={`/work/${symbiont.slug}`}>SYMBIONT</a></h2>
+      <p class="prose">{symbiont.summary}</p>
+      <a class="s-more mono" href={`/work/${symbiont.slug}`}>Open →</a>
+    </div>
   </section>
 
   <hr class="rule wrap" style="max-width: 68rem;" />
 
-  <!-- ── Die Deutsche Post Punk ── -->
+  <!-- ── Work index, newest → oldest ── -->
   <section class="work wrap">
-    <div class="work-head">
-      <div>
-        <p class="eyebrow">Band · Live improvisation · Guitar</p>
-        <h2 class="display distort-light">Die Deutsche Post Punk</h2>
-        <p class="prose">
-          A live-improvised trio. Nothing is written down; each set is decided in
-          the room, in real time, between three listeners. This is the practice
-          everything else grows out of.
-        </p>
-      </div>
-      <dl class="spec">
-        <dt>Format</dt><dd>Trio · fully improvised</dd>
-        <dt>Role</dt><dd>Guitar</dd>
-        <dt>Recorded</dt><dd>Live, Hamburg</dd>
-      </dl>
-    </div>
-
-    <ol class="tracks mono">
-      {tracks.map((t, i) => (
-        <li class="track">
-          <span class="track-n">{String(i + 1).padStart(2, "0")}</span>
-          <span class="track-title">{t.title}</span>
-          <audio controls preload="none" src={t.src}></audio>
+    <p class="eyebrow sec-eyebrow">Selected work</p>
+    <ol class="index">
+      {rest.map((p) => (
+        <li class="row">
+          <a class="row-link" href={`/work/${p.slug}`}>
+            <span class="row-year mono">{p.yearLabel}</span>
+            <span class="row-main">
+              <span class="row-title display distort-light">{p.title}</span>
+              <span class="row-summary">{p.summary}</span>
+            </span>
+            <span class="row-meta mono">
+              <span class="row-cat">{p.category}</span>
+              <span class="row-role">{p.role}</span>
+            </span>
+          </a>
         </li>
       ))}
     </ol>
-
-    <div class="shots">
-      <img src="/images/dpp-1.jpg" alt="Die Deutsche Post Punk performing live" loading="lazy" />
-      <img src="/images/dpp-2.jpg" alt="Die Deutsche Post Punk performing live" loading="lazy" />
-      <img src="/images/dpp-3.jpg" alt="Die Deutsche Post Punk performing live" loading="lazy" />
-    </div>
-  </section>
-
-  <!-- ── SYMBIONT teaser (page ships only when it has media) ── -->
-  <section class="teaser wrap">
-    <p class="eyebrow">In progress</p>
-    <h2 class="display distort-light">SYMBIONT</h2>
-    <p class="prose">
-      An instrument that renders a living system's signal as sound in real time —
-      EEG to stereo audio, in the browser. Documentation is being recorded now.
-    </p>
   </section>
 </Base>
 
@@ -83,62 +68,47 @@ const tracks = [
   .lede { margin-top: 2rem; color: var(--ink-soft); }
   .lede strong { color: var(--ink); font-weight: 400; }
 
-  .work { padding-top: 3rem; }
-  .work-head {
+  .symbiont {
+    padding: 1rem 0 3rem;
     display: grid;
-    grid-template-columns: 1fr minmax(12rem, 16rem);
+    grid-template-columns: 1.1fr 1fr;
     gap: 3rem;
-    align-items: start;
-    margin-bottom: 3rem;
-  }
-  .work-head h2 { margin: 0.6rem 0 1rem; }
-
-  .tracks { list-style: none; margin: 0 0 3rem; padding: 0; }
-  .track {
-    display: grid;
-    grid-template-columns: 2.2rem 1fr;
-    grid-template-areas: "n title" ". audio";
-    gap: 0.4rem 0.6rem;
     align-items: center;
-    padding: 1rem 0;
-    border-top: 1px solid var(--rule);
   }
-  .track:last-child { border-bottom: 1px solid var(--rule); }
-  .track-n { grid-area: n; color: var(--red); }
-  .track-title {
-    grid-area: title;
-    text-transform: none;
-    letter-spacing: 0.02em;
-    font-size: 0.9rem;
-    color: var(--ink);
-  }
-  .track audio {
-    grid-area: audio;
-    width: 100%;
-    max-width: 30rem;
-    height: 2.2rem;
-    margin-top: 0.4rem;
-  }
+  .s-video { display: block; aspect-ratio: 16 / 10; background: #000; overflow: hidden; }
+  .s-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .s-text h2 { margin: 0.6rem 0 1rem; }
+  .s-text h2 a:hover { color: var(--red); }
+  .s-text .prose { color: var(--ink-soft); }
+  .s-more { display: inline-block; margin-top: 1rem; color: var(--red); }
 
-  .shots {
+  .sec-eyebrow { display: block; margin-bottom: 1.5rem; }
+  .work { padding-top: 3rem; }
+  .index { list-style: none; margin: 0; padding: 0; }
+  .row { border-top: 1px solid var(--rule); }
+  .row:last-child { border-bottom: 1px solid var(--rule); }
+  .row-link {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
+    grid-template-columns: 5rem 1fr minmax(9rem, 12rem);
+    gap: 1.5rem;
+    align-items: baseline;
+    padding: 1.6rem 0;
+    transition: background 0.15s ease;
   }
-  .shots img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    filter: grayscale(1) contrast(1.02);
-    transition: filter 0.4s ease;
-  }
-  .shots img:hover { filter: grayscale(0); }
-
-  .teaser { padding-top: 5rem; }
-  .teaser h2 { margin: 0.6rem 0 1rem; color: var(--ink-faint); }
+  .row-link:hover { background: #fafafa; }
+  .row-link:hover .row-title { color: var(--red); }
+  .row-year { color: var(--ink-faint); }
+  .row-main { display: flex; flex-direction: column; gap: 0.4rem; }
+  .row-title { font-size: 1.6rem; line-height: 1.05; transition: color 0.15s ease; }
+  .row-summary { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.45; }
+  .row-meta { display: flex; flex-direction: column; gap: 0.3rem; text-align: right; }
+  .row-cat { color: var(--red); }
+  .row-role { color: var(--ink-faint); }
 
   @media (max-width: 720px) {
-    .work-head { grid-template-columns: 1fr; gap: 1.6rem; }
-    .shots { grid-template-columns: 1fr 1fr; }
+    .symbiont { grid-template-columns: 1fr; }
+    .row-link { grid-template-columns: 1fr; gap: 0.5rem; }
+    .row-meta { flex-direction: row; gap: 0.8rem; text-align: left; }
+    .row-year { order: -1; }
   }
 </style>
