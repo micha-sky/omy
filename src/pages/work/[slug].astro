@@ -86,7 +86,7 @@ const scEmbed = (url: string) =>
         {p.images && (
           <div class="d-shots">
             {p.images.map((im) => (
-              <img src={im.src} alt={im.alt} loading="lazy" />
+              <img src={im.src} alt={im.alt} loading="eager" decoding="async" />
             ))}
           </div>
         )}
@@ -174,6 +174,7 @@ const scEmbed = (url: string) =>
 
   .d-shots { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 2rem 0; }
   .d-shots img { width: 100%; object-fit: cover; }
+  .d-shots img:only-child { grid-column: 1 / -1; }
 
   .d-links { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-direction: column; gap: 0.5rem; }
   .d-links a:hover { color: var(--red); }

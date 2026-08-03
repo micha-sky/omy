@@ -48,6 +48,27 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "kaluskie-baarm-sommerfest",
+    title: "kaluskie eksportowe @ BAARM Sommerfest",
+    sort: "2025-08-30",
+    yearLabel: "2025",
+    category: "Live performance",
+    role: "Live set (as kaluskie eksportowe)",
+    summary: "A live set at the BAARM Sommerfest in Hamburg, as kaluskie eksportowe.",
+    body: [
+      "A live set performed as kaluskie eksportowe at the BAARM Sommerfest — the summer festival of the BAARM artist-and-workshop collective in Hamburg, a former motorway rest stop now given over to studios for art, design, music and craft.",
+    ],
+    credits: [
+      ["Where", "BAARM, Marschnerstraße 21, Hamburg"],
+      ["When", "30 August 2025"],
+      ["As", "kaluskie eksportowe"],
+    ],
+    images: [
+      { src: "/images/kaluskie-baarm/01.jpg", alt: "Oleksandr Mykhalskyi performing as kaluskie eksportowe at the BAARM Sommerfest" },
+    ],
+    links: [{ label: "BAARM", url: "https://www.baarm.net/" }],
+  },
+  {
     slug: "birthday-set-bye-bye-raum",
     title: "birrthday set @ BYE BYE RAUM",
     sort: "2025-01-18",
