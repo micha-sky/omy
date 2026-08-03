@@ -35,9 +35,15 @@ export const projects: Project[] = [
     role: "Concept, instrument, performance",
     summary:
       "A biofeedback instrument where a living system — EEG, plant, room — improvises in place of a second musician.",
+    epigraph: {
+      quote: "The circuit is a prayer wheel that happens to run on electricity.",
+      source: "Tikkun, in hardware",
+    },
     body: [
-      "SYMBIONT is an instrument that renders a living system's signal as sound in real time. It keeps the practice of live performance and swaps one performer for a living system: an EEG signal, a plant, a room.",
-      "braino, its EEG-to-sound engine, maps the five brainwave bands to a stereo field in the browser — offline from a CSV, or live while the signal streams in over OSC. The living system becomes the improvising partner.",
+      "SYMBIONT is an instrument that renders a living system's signal as sound in real time. My work is composition and sound for performance — a fragmenting text, a body in a dreamscape, a collective in catastrophe. SYMBIONT keeps that practice exactly and swaps one performer for a living system: an EEG signal, a plant, a room.",
+      "I stand in the lineage of biofeedback music — Lucier, Rosenboom, Teitelbaum — but where that tradition asked what the body sounds like, SYMBIONT asks what a symbiosis sounds like when the human ear is only one of several nervous systems in the room.",
+      "In the Kabbalistic tradition, Tikkun names the work of repair — the mending of vessels that shattered because they could not hold the light passing through them. I make this work as a Ukrainian, from a home that has itself been shattered and scattered by war; repair is not a metaphor I reach for but the condition I work in. I understand SYMBIONT as that work made literal: building a vessel of sensors, signal, and sound sturdy enough to carry what moves through a living system without breaking it.",
+      "braino, its EEG-to-sound engine, maps the five brainwave bands to a stereo field in the browser — offline from a CSV, or live while the signal streams in over OSC. The apparatus is intentionally modest: consumer hardware, off-the-shelf parts, mystic technology. An ongoing inquiry into post-human authorship, repair as a compositional principle, and making music with — rather than about — the living world.",
     ],
     credits: [
       ["Signal", "EEG (Muse) · plant · room"],
