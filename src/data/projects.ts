@@ -147,6 +147,10 @@ export const projects: Project[] = [
       ["Support", "Fonds Darstellende Künste (Take Heart)"],
       ["Status", "Ongoing since 2022"],
     ],
+    images: [
+      { src: "/images/thin-skinned-moon/01.jpg", alt: "Oleksandr Mykhalskyi performing live music during a Thin Skinned Moon try-out" },
+      { src: "/images/thin-skinned-moon/02.jpg", alt: "A performer working with glass vessels in a blue-lit Thin Skinned Moon try-out" },
+    ],
   },
   {
     slug: "pose-dia-phoenix",
@@ -234,6 +238,12 @@ export const projects: Project[] = [
       ["Performance", "Julia Buchmann, Oleksandr Mykhalskyi"],
       ["Where", "Theaterakademie Hamburg"],
       ["When", "17–20 June 2021"],
+      ["Photos", "Tillmann Engel"],
+    ],
+    images: [
+      { src: "/images/4-48-psychose/01.jpg", alt: "Oleksandr Mykhalskyi performing live sound at the mixing desk in 4.48 Psychose" },
+      { src: "/images/4-48-psychose/02.jpg", alt: "The actress inside the caged stage structure in 4.48 Psychose" },
+      { src: "/images/4-48-psychose/03.jpg", alt: "The stage structure lit in violet in 4.48 Psychose" },
     ],
     youtube: "mN-v-RCEi34",
     links: [
