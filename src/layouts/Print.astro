@@ -1,0 +1,96 @@
+---
+// ── Print layout ─────────────────────────────────────────────
+// A bare, A4-oriented shell for the printable CV + portfolio.
+// No nav, no footer, no cursor animation — the display type holds
+// STILL here (the warp is for the screen; a jury reads paper flat).
+// Usage: open the page, then Cmd/Ctrl-P → "Save as PDF", A4,
+// margins "Default", background graphics ON.
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='54' font-size='46' font-family='Times New Roman,serif' fill='%23dc2626' text-anchor='middle' dominant-baseline='central'>OM</text></svg>"
+    />
+  </head>
+  <body class="print-body">
+    <!-- Screen-only banner: how to make the PDF. Never printed. -->
+    <div class="print-hint mono" role="note">
+      Built for print · <strong>Cmd/Ctrl-P → Save as PDF</strong> · A4 ·
+      turn on “Background graphics”
+    </div>
+
+    <main class="sheet">
+      <slot />
+    </main>
+
+    <style is:global>
+      /* Page geometry — A4 with a generous, even margin. */
+      @page {
+        size: A4;
+        margin: 16mm 15mm;
+      }
+
+      .print-body {
+        background: #f3f4f6;   /* neutral desk color, screen only */
+        font-size: 10.5pt;
+        line-height: 1.5;
+      }
+
+      /* On screen we show the sheet at A4 width so it previews true. */
+      .sheet {
+        width: 180mm;              /* A4 content width (210 − 2×15) */
+        margin: 1.5rem auto 4rem;
+        background: #fff;
+        color: var(--ink);
+        padding: 4mm;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+                    0 8px 24px rgba(0, 0, 0, 0.08);
+      }
+
+      .print-hint {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        text-align: center;
+        padding: 0.7rem 1rem;
+        background: #1a1a1a;
+        color: #fff;
+        text-transform: none;
+        letter-spacing: 0.04em;
+      }
+      .print-hint strong { color: #fff; }
+
+      /* Page-break helpers used by the pages. */
+      .page-break { break-before: page; page-break-before: always; }
+      .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+
+      @media print {
+        html, body { background: #fff; }
+        .print-hint { display: none !important; }
+        .sheet {
+          width: auto;
+          margin: 0;
+          padding: 0;
+          box-shadow: none;
+        }
+        /* Make the red accent + any tints actually print. */
+        * {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+      }
+    </style>
+  </body>
+</html>

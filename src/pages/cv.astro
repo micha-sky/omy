@@ -23,7 +23,19 @@ const sections = [
 <Base title="Oleksandr Mykhalskyi — CV" active="CV">
   <div class="cv wrap">
     <header class="cv-head">
-      <p class="eyebrow">Curriculum</p>
+      <div class="cv-top">
+        <p class="eyebrow">Curriculum</p>
+        <span class="print-links mono">
+          <a href="/print/cv">
+            <svg class="pr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M6 14h12v7H6z"/></svg>
+            CV (PDF)
+          </a>
+          <a href="/print/portfolio">
+            <svg class="pr-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M6 14h12v7H6z"/></svg>
+            Portfolio (PDF)
+          </a>
+        </span>
+      </div>
       <h1 class="display distort">Oleksandr Mykhalskyi</h1>
       <p class="prose bio">
         Composer and sound artist from Kalush, western Ukraine; studied in Lviv,
@@ -62,7 +74,33 @@ const sections = [
 <style>
   .cv { padding-top: 3rem; padding-bottom: 4rem; }
   .cv-head { margin-bottom: 3.5rem; }
-  .cv-head .eyebrow { display: block; margin-bottom: 1.2rem; }
+  .cv-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .cv-head .eyebrow { display: block; }
+  .print-links { display: flex; gap: 1.4rem; }
+  .print-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.1em;
+    transition: color 0.15s ease;
+  }
+  .print-links a:hover { color: var(--red); }
+  .pr-ic {
+    width: 0.95rem;
+    height: 0.95rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
   .bio { margin-top: 1.6rem; color: var(--ink-soft); max-width: 42rem; }
 
   .cv-sec { margin-bottom: 3rem; }

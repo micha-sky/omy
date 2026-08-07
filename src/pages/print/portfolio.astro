@@ -1,0 +1,181 @@
+---
+import Print from "../../layouts/Print.astro";
+import { byNewest } from "../../data/projects";
+import { site } from "../../data/site";
+
+// One document, sourced from projects.ts (SYMBIONT pinned first via sort).
+// Cover page, then one spread per project. Kept well under 20 pages.
+const projects = byNewest;
+
+const { contact } = site;
+const contactLine = [contact.email, contact.website, contact.instagram].filter(Boolean);
+const year = new Date().getFullYear();
+---
+
+<Print title={`${site.name} — Portfolio`}>
+  <!-- ── Cover ─────────────────────────────────────────────── -->
+  <section class="cover">
+    <div class="cover-top">
+      <p class="eyebrow">Selected Work · {year}</p>
+    </div>
+    <div class="cover-mid">
+      <h1 class="display cover-name">{site.name}</h1>
+      <p class="cover-tag display">{site.tagline}</p>
+    </div>
+    <div class="cover-bottom">
+      <p class="cover-bio">{site.bio}</p>
+      <p class="cover-contact mono">
+        {site.role} · {site.location}
+        {contactLine.length > 0 && <><br />{contactLine.join("  ·  ")}</>}
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Project spreads ───────────────────────────────────── -->
+  {projects.map((p) => (
+    <article class="proj page-break">
+      <header class="proj-head avoid-break">
+        <p class="proj-year mono">{p.yearLabel} · {p.category}</p>
+        <h2 class="display proj-title">{p.title}</h2>
+        <p class="proj-role mono">{p.role}</p>
+      </header>
+
+      {p.epigraph && (
+        <blockquote class="epigraph avoid-break">
+          <p>“{p.epigraph.quote}”</p>
+          <cite class="mono">— {p.epigraph.source}</cite>
+        </blockquote>
+      )}
+
+      <div class="proj-body">
+        {p.body.map((para) => <p>{para}</p>)}
+      </div>
+
+      {p.images && p.images.length > 0 && (
+        <div class:list={["proj-images", { single: p.images.length === 1 }]}>
+          {p.images.map((img) => (
+            <figure class="avoid-break">
+              <img src={img.src} alt={img.alt} loading="eager" />
+            </figure>
+          ))}
+        </div>
+      )}
+
+      {p.credits && p.credits.length > 0 && (
+        <dl class="credits mono avoid-break">
+          {p.credits.map(([k, v]) => (
+            <div class="cr">
+              <dt>{k}</dt>
+              <dd>{v}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+
+      {p.links && p.links.length > 0 && (
+        <p class="proj-links mono avoid-break">
+          {p.links.map((l, i) => (
+            <>{i > 0 && <span class="sep"> · </span>}<span>{l.label}: {l.url}</span></>
+          ))}
+        </p>
+      )}
+    </article>
+  ))}
+</Print>
+
+<style>
+  /* ── Cover ─────────────────────────────────────────────── */
+  .cover {
+    min-height: 258mm;               /* ~A4 content height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4mm 0;
+  }
+  .cover-name {
+    font-size: 48pt;
+    line-height: 0.98;
+    margin: 0.4rem 0 1rem;
+  }
+  .cover-tag {
+    font-size: 20pt;
+    color: var(--red);
+    margin: 0;
+  }
+  .cover-mid { padding: 2rem 0; border-top: 2px solid var(--red); }
+  .cover-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+    border-top: 1px solid var(--rule);
+    padding-top: 1.2rem;
+  }
+  .cover-bio { max-width: 34rem; color: var(--ink-soft); font-size: 10pt; margin: 0; }
+  .cover-contact {
+    text-align: right;
+    text-transform: none;
+    letter-spacing: 0.03em;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  /* ── Project spread ────────────────────────────────────── */
+  .proj-head {
+    border-bottom: 2px solid var(--red);
+    padding-bottom: 0.6rem;
+    margin-bottom: 1.1rem;
+  }
+  .proj-year { color: var(--ink-faint); letter-spacing: 0.14em; }
+  .proj-title { font-size: 26pt; line-height: 1.02; margin: 0.3rem 0; }
+  .proj-role { color: var(--red); letter-spacing: 0.1em; }
+
+  .epigraph {
+    border-left: 2px solid var(--red);
+    padding: 0.2rem 0 0.2rem 1.1rem;
+    margin: 0 0 1.1rem;
+    max-width: 38rem;
+  }
+  .epigraph p { font-style: italic; color: var(--ink); margin: 0 0 0.3rem; font-size: 11pt; }
+  .epigraph cite { color: var(--ink-faint); font-style: normal; }
+
+  .proj-body { max-width: 40rem; }
+  .proj-body p { margin: 0 0 0.8rem; font-size: 10.5pt; line-height: 1.5; }
+
+  .proj-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+    margin: 1.2rem 0;
+  }
+  .proj-images.single { grid-template-columns: 1fr; }
+  .proj-images figure { margin: 0; }
+  .proj-images img {
+    display: block;
+    width: 100%;
+    max-height: 95mm;
+    object-fit: cover;
+    border: 1px solid var(--rule);
+  }
+  .proj-images.single img { max-height: 130mm; object-fit: contain; }
+
+  .credits {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.2rem 2rem;
+    margin: 1.1rem 0 0;
+    border-top: 1px solid var(--rule);
+    padding-top: 0.8rem;
+  }
+  .credits .cr { display: grid; grid-template-columns: 8rem 1fr; gap: 0.6rem; }
+  .credits dt { color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.08em; }
+  .credits dd { margin: 0; color: var(--ink); text-transform: none; letter-spacing: 0.01em; }
+
+  .proj-links {
+    margin: 0.9rem 0 0;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    color: var(--ink-soft);
+    word-break: break-all;
+  }
+</style>

@@ -1,0 +1,119 @@
+---
+import Print from "../../layouts/Print.astro";
+import { byNewest } from "../../data/projects";
+import { site } from "../../data/site";
+
+// Same grouping + data as the on-screen /cv, so the sheet never drifts.
+const sections = [
+  { title: "Work", items: byNewest.filter((p) => p.category === "Instrument") },
+  {
+    title: "Sound for performance",
+    items: byNewest.filter((p) =>
+      ["Theatre", "Installation", "Performance"].includes(p.category)
+    ),
+  },
+  {
+    title: "Live performances",
+    items: byNewest.filter((p) => p.category === "Live performance"),
+  },
+  { title: "Video & VFX", items: byNewest.filter((p) => p.category === "Music video") },
+  { title: "Events & organising", items: byNewest.filter((p) => p.category === "Event") },
+];
+
+const { contact } = site;
+const contactLine = [
+  contact.email,
+  contact.website,
+  contact.instagram,
+].filter(Boolean);
+---
+
+<Print title={`${site.name} — CV`}>
+  <header class="head avoid-break">
+    <div class="head-main">
+      <p class="eyebrow">Curriculum Vitae</p>
+      <h1 class="display name">{site.name}</h1>
+      <p class="role mono">{site.role} · {site.location}</p>
+    </div>
+    {contactLine.length > 0 && (
+      <p class="contact mono">{contactLine.join("  ·  ")}</p>
+    )}
+  </header>
+
+  <p class="bio">{site.bio}</p>
+
+  {sections.map((sec) =>
+    sec.items.length > 0 ? (
+      <section class="sec">
+        <h2 class="mono sec-title">{sec.title}</h2>
+        <dl class="entries">
+          {sec.items.map((e) => (
+            <div class="entry avoid-break">
+              <dt class="mono year">{e.yearLabel}</dt>
+              <dd>
+                <span class="e-title display">{e.title}</span>
+                <span class="e-role mono">{e.role}</span>
+                <span class="e-note">{e.summary}</span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    ) : null
+  )}
+</Print>
+
+<style>
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--red);
+    margin-bottom: 1.4rem;
+  }
+  .name {
+    font-size: 30pt;
+    line-height: 1;
+    margin: 0.35rem 0 0.5rem;
+  }
+  .role { color: var(--red); letter-spacing: 0.12em; }
+  .contact {
+    text-align: right;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .bio {
+    color: var(--ink-soft);
+    max-width: 40rem;
+    margin: 0 0 1.8rem;
+    font-size: 10.5pt;
+    line-height: 1.5;
+  }
+
+  .sec { margin-bottom: 1.3rem; }
+  .sec-title {
+    color: var(--red);
+    letter-spacing: 0.2em;
+    margin: 0 0 0.6rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .entries { margin: 0; }
+  .entry {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 1.2rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .entry:last-child { border-bottom: 0; }
+  .year { color: var(--ink-faint); padding-top: 0.15rem; }
+  .entry dd { margin: 0; display: flex; flex-direction: column; gap: 0.15rem; }
+  .e-title { font-size: 13pt; line-height: 1.1; }
+  .e-role { color: var(--red); }
+  .e-note { color: var(--ink-soft); font-size: 9.5pt; line-height: 1.4; }
+</style>
