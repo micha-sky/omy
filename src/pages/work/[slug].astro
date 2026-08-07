@@ -41,6 +41,15 @@ const scEmbed = (url: string) =>
           </div>
         )}
 
+        {p.videos && p.videos.map((v) => (
+          <figure class="d-figure">
+            <div class="d-video">
+              <video src={v.src} autoplay muted loop playsinline preload="none"></video>
+            </div>
+            {v.caption && <figcaption class="mono">{v.caption}</figcaption>}
+          </figure>
+        ))}
+
         {p.youtube && (
           <div class="d-embed">
             <iframe
@@ -154,6 +163,8 @@ const scEmbed = (url: string) =>
   .d-video, .d-media, .d-embed { margin: 2rem 0; }
   .d-video { aspect-ratio: 16 / 10; background: #000; overflow: hidden; }
   .d-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .d-figure { margin: 2rem 0; }
+  .d-figure figcaption { margin-top: 0.5rem; color: var(--ink-faint); font-size: 0.8rem; }
   .d-embed { aspect-ratio: 16 / 9; background: #000; }
   .d-embed iframe { width: 100%; height: 100%; border: 0; display: block; }
   .sc { display: block; border: 0; margin-bottom: 1rem; }

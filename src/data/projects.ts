@@ -23,6 +23,7 @@ export type Project = {
   todo?: string;       // visible "to confirm" flag on the detail page
   featured?: boolean;  // pinned on the home page (SYMBIONT)
   video?: string;      // background/hero video
+  videos?: { src: string; caption?: string }[];  // extra clips on the detail page
 };
 
 export const projects: Project[] = [
@@ -36,21 +37,27 @@ export const projects: Project[] = [
     summary:
       "A biofeedback instrument where a living system — EEG, plant, room — improvises in place of a second musician.",
     epigraph: {
-      quote: "The circuit is a prayer wheel that happens to run on electricity.",
-      source: "Tikkun, in hardware",
+      quote:
+        "Five brainwave bands become five voices in a stereo field — the slow brain sings bass, the fast brain sings air.",
+      source: "braino — the mapping",
     },
     body: [
       "SYMBIONT is an instrument that renders a living system's signal as sound in real time. My work is composition and sound for performance — a fragmenting text, a body in a dreamscape, a collective in catastrophe. SYMBIONT keeps that practice exactly and swaps one performer for a living system: an EEG signal, a plant, a room.",
       "I stand in the lineage of biofeedback music — Lucier, Rosenboom, Teitelbaum — but where that tradition asked what the body sounds like, SYMBIONT asks what a symbiosis sounds like when the human ear is only one of several nervous systems in the room.",
-      "In the Kabbalistic tradition, Tikkun names the work of repair — the mending of vessels that shattered because they could not hold the light passing through them. I make this work as a Ukrainian, from a home that has itself been shattered and scattered by war; repair is not a metaphor I reach for but the condition I work in. I understand SYMBIONT as that work made literal: building a vessel of sensors, signal, and sound sturdy enough to carry what moves through a living system without breaking it.",
-      "braino, its EEG-to-sound engine, maps the five brainwave bands to a stereo field in the browser — offline from a CSV, or live while the signal streams in over OSC. The apparatus is intentionally modest: consumer hardware, off-the-shelf parts, mystic technology. An ongoing inquiry into post-human authorship, repair as a compositional principle, and making music with — rather than about — the living world.",
+      "braino, its engine, listens to five brainwave bands — delta, theta, alpha, beta, gamma, slowest to fastest — and gives each one a voice in a shared stereo field. A band's power becomes a pitch, snapped to the notes of a chosen scale so the result is musical rather than a siren: the slowest rhythm of the brain sings the sub-bass, the fastest becomes air and shimmer overhead. The deep drone is pinned to the root and fifth so the floor always agrees with the harmony above it, while alpha — the band of relaxed attention — is set free as the melody. A slow chord progression re-voices the pads every few seconds, and a gate lowers whichever bands have gone still, so two or three active voices form a chord instead of five forming a cluster. It runs in the browser — offline from a CSV, or live over OSC from a consumer EEG headband.",
+      "Live, the field opens outward. Around the human band the same engine layers slow structural sources — non-human systems that set the room's space and density: satellites passing overhead, the Wi-Fi environment, a shortwave band, a river gauge, the real positions of sun and moon, the Schumann resonance of the ionospheric cavity, the solar wind. Each gets a subtle hand on the stereo bus and, when invited, a voice of its own — the moon as a slow drone that swells only when it is full and risen, the river as filtered water-noise, the cavity as a sub-low throb at 7.83 Hz. A living plant, read through a Pocket SCÍON, becomes another organism in the mix. The performer is dispersed across all of them.",
+      "The apparatus is intentionally modest: consumer hardware and off-the-shelf parts, and the mapping above is one configuration among many — an instrument, not a fixed patch. An ongoing inquiry into post-human authorship and making music with, rather than about, the living world.",
     ],
     credits: [
       ["Signal", "EEG (Muse) · plant · room"],
       ["Engine", "braino — WebAudio / OSC"],
+      ["Live sources", "satellites · Wi-Fi · river · moon · Schumann · solar wind"],
       ["Status", "In documentation"],
     ],
-    video: "/video/braino-loop.mp4",
+    video: "/video/braino-flame.mp4",
+    videos: [
+      { src: "/video/braino-water.mp4", caption: "braino — live visual" },
+    ],
     featured: true,
   },
   {
