@@ -1,26 +1,14 @@
 ---
 import Base from "../layouts/Base.astro";
 
-// Who / What / Why — built on OMy's line:
-// "I tune my antennas to get insight and transmutate,
-//  to remind us all that we are one — OM."
-const movements = [
-  {
-    w: "Who",
-    text:
-      "I am an antenna. A guitarist who learned to listen — to a text, a body, a room — and to tune in to what is already sounding there.",
-  },
-  {
-    w: "What",
-    text:
-      "I tune my antennas, get insight, and transmutate it — turning a living signal, an EEG, a plant, a room, into sound in real time.",
-  },
-  {
-    w: "Why",
-    html: true,
-    text:
-      "To remind us all that we were never separate — performer and machine, human and plant, you and I. We are one. <span style=\"color:#dc2626\">OM</span>.",
-  },
+// A condensed, serious version of the application statement:
+// bio → SYMBIONT → biofeedback lineage → repair (Ukraine) → "with, not about".
+const paras = [
+  "I am a composer and sound artist from Kalush, in western Ukraine. I studied in Lviv and work between Hamburg and Gießen. For most of a decade I have made sound for live performance — composing and playing for theatre, dance, film and installation, where the music is never finished in advance but tuned, in real time, to a text fragmenting on stage, a body moving through a dreamscape, a collective rehearsing catastrophe. I began as a guitarist, and the guitarist's discipline still governs everything I do: to listen to what is already sounding in a room, and answer it.",
+  "My central body of work, SYMBIONT, carries that discipline into an instrument. It keeps the structure of an improvising duet exactly — and replaces one of the two performers with a living system: an EEG signal, a plant, or the electrical weather of a room, rendered as sound the moment it happens. The apparatus is deliberately modest — consumer sensors, off-the-shelf parts — because the question it asks is not technological but relational: what does a symbiosis sound like when the human ear is only one of several nervous systems in the room?",
+  "I place this work in the lineage of biofeedback music — Alvin Lucier, David Rosenboom, Richard Teitelbaum — but where that tradition asked what the body sounds like, I am asking what it means to compose with a living thing rather than about it: to treat authorship as something shared with a system that has its own tempo, its own thresholds, its own refusals.",
+  "Before I worked in sound I was a doctoral researcher at the National Academy of Sciences of Ukraine, building the environmental models inside the EU's nuclear-emergency decision-support system — radionuclide transport in rivers, transboundary flood forecasting, catchment work reaching from Chernobyl to Fukushima. For years my material was the data of catastrophe, turned into forecasts. I make sound now with the same instruments turned the other way: I use scientific tools unscientifically, to make a living system audible rather than actionable.",
+  "Underneath the technical vocabulary the work is animated by repair. I make it as a Ukrainian, from a home that has itself been shattered and scattered by war; repair is not a metaphor I reach toward but the condition I work in. I build small, listen closely, and let the material — a brainwave, a plant's fluctuation, a room's resonance — decide what the piece can become.",
 ];
 ---
 
@@ -28,60 +16,36 @@ const movements = [
   <article class="statement wrap">
     <header class="st-head">
       <p class="eyebrow">Statement</p>
-      <h1 class="display distort">We are&nbsp;one.</h1>
+      <h1 class="display distort">With, not&nbsp;about.</h1>
     </header>
 
-    <div class="movements">
-      {movements.map((m) => (
-        <section class="movement">
-          <p class="mv-label mono">{m.w}</p>
-          {m.html
-            ? <p class="mv-text display distort-light" set:html={m.text} />
-            : <p class="mv-text display distort-light">{m.text}</p>}
-        </section>
-      ))}
+    <div class="body">
+      {paras.map((p) => <p class="prose">{p}</p>)}
     </div>
 
-    <p class="sig mono">Oleksandr Mykhalskyi · Kalush → Hamburg</p>
+    <p class="sig mono">Oleksandr Mykhalskyi · Kalush → Hamburg / Gießen</p>
   </article>
 </Base>
 
 <style>
   .statement { padding-top: 3rem; padding-bottom: 4rem; }
-  .st-head { margin-bottom: 3.5rem; }
+  .st-head { margin-bottom: 3rem; }
   .st-head .eyebrow { display: block; margin-bottom: 1.2rem; }
+  .st-head h1 { font-size: clamp(2.6rem, 1.8rem + 3vw, 4.5rem); }
 
-  .movements {
+  .body {
     display: flex;
     flex-direction: column;
-    gap: 2.8rem;
-    max-width: 46rem;
+    gap: 1.6rem;
+    max-width: 42rem;
   }
-  .movement {
-    display: grid;
-    grid-template-columns: 5rem 1fr;
-    gap: 1.5rem;
-    align-items: baseline;
-  }
-  .mv-label {
-    color: var(--red);
-    letter-spacing: 0.2em;
-    padding-top: 0.5rem;
-  }
-  .mv-text {
-    font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.4rem);
-    line-height: 1.12;
+  .body .prose {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
     margin: 0;
   }
-  .mv-text .om {
-    color: var(--red);
-    font-weight: 400;
-  }
+  .body .prose:first-child { color: var(--ink); }
 
   .sig { margin-top: 3.5rem; color: var(--ink-faint); }
-
-  @media (max-width: 560px) {
-    .movement { grid-template-columns: 1fr; gap: 0.5rem; }
-    .mv-label { padding-top: 0; }
-  }
 </style>

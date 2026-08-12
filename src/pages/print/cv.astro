@@ -4,6 +4,8 @@ import { byNewest } from "../../data/projects";
 import { site } from "../../data/site";
 
 // Same grouping + data as the on-screen /cv, so the sheet never drifts.
+// Order by curatorial weight, not date: sound-for-performance leads;
+// the live-alias / club sets sit as a secondary block at the end.
 const sections = [
   { title: "Work", items: byNewest.filter((p) => p.category === "Instrument") },
   {
@@ -12,12 +14,12 @@ const sections = [
       ["Theatre", "Installation", "Performance"].includes(p.category)
     ),
   },
+  { title: "Events & organising", items: byNewest.filter((p) => p.category === "Event") },
+  { title: "Video & VFX", items: byNewest.filter((p) => p.category === "Music video") },
   {
     title: "Live performances",
     items: byNewest.filter((p) => p.category === "Live performance"),
   },
-  { title: "Video & VFX", items: byNewest.filter((p) => p.category === "Music video") },
-  { title: "Events & organising", items: byNewest.filter((p) => p.category === "Event") },
 ];
 
 const { contact } = site;
@@ -61,6 +63,21 @@ const contactLine = [
       </section>
     ) : null
   )}
+
+  <section class="sec">
+    <h2 class="mono sec-title">Education &amp; research</h2>
+    <dl class="entries">
+      {site.education.map((e) => (
+        <div class="entry avoid-break">
+          <dt class="mono year">{e.period}</dt>
+          <dd>
+            <span class="e-title display">{e.title}</span>
+            {e.detail && <span class="e-note">{e.detail}</span>}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </section>
 </Print>
 
 <style>
