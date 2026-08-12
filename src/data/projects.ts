@@ -67,14 +67,16 @@ export const projects: Project[] = [
     yearLabel: "2025",
     category: "Live performance",
     role: "Live set (as kaluskie eksportowe)",
-    summary: "A live set at the BAARM Sommerfest in Hamburg, as kaluskie eksportowe.",
+    summary: "A live set at the BAARM Sommerfest in Hamburg, as kaluskie eksportowe — solo guitar through an infinite-sustain pedal and effects chain.",
     body: [
       "A live set performed as kaluskie eksportowe at the BAARM Sommerfest — the summer festival of the BAARM artist-and-workshop collective in Hamburg, a former motorway rest stop now given over to studios for art, design, music and craft.",
+      "Solo guitar, played through an infinite-sustain pedal into a live effects chain — single notes held and layered into sustained fields.",
     ],
     credits: [
       ["Where", "BAARM, Marschnerstraße 21, Hamburg"],
       ["When", "30 August 2025"],
       ["As", "kaluskie eksportowe"],
+      ["Setup", "Guitar · infinite-sustain pedal · effects chain"],
     ],
     images: [
       { src: "/images/kaluskie-baarm/01.jpg", alt: "Oleksandr Mykhalskyi performing as kaluskie eksportowe at the BAARM Sommerfest" },
@@ -88,14 +90,15 @@ export const projects: Project[] = [
     yearLabel: "2025",
     category: "Live performance",
     role: "Live set (as Magdeburg 96)",
-    summary: "A live set at the BYE BYE RAUM closing, 18 January 2025.",
+    summary: "A live set at the BYE BYE RAUM closing, 18 January 2025 — solo guitar through an infinite-sustain pedal and effects chain.",
     body: [
-      "A live set performed as Magdeburg 96 at the BYE BYE RAUM closing night, 18 January 2025.",
+      "A live set performed as Magdeburg 96 at the BYE BYE RAUM closing night, 18 January 2025. Solo guitar, played through an infinite-sustain pedal into a live effects chain.",
     ],
     credits: [
       ["Where", "BYE BYE RAUM"],
       ["When", "18 January 2025"],
       ["As", "Magdeburg 96"],
+      ["Setup", "Guitar · infinite-sustain pedal · effects chain"],
     ],
     soundcloud: [
       { url: "https://soundcloud.com/getschwifty/sets/birrthday-set-bye-bye-raum-18012025", height: 340 },
@@ -108,12 +111,13 @@ export const projects: Project[] = [
     yearLabel: "2024",
     category: "Live performance",
     role: "Live set (as Magdeburg 96)",
-    summary: "A live set at Locke, 20 June 2024.",
-    body: ["A live set performed as Magdeburg 96 at Locke, 20 June 2024."],
+    summary: "A live set at Locke, 20 June 2024 — solo guitar through an infinite-sustain pedal and effects chain.",
+    body: ["A live set performed as Magdeburg 96 at Locke, 20 June 2024. Solo guitar, played through an infinite-sustain pedal into a live effects chain."],
     credits: [
       ["Where", "Locke"],
       ["When", "20 June 2024"],
       ["As", "Magdeburg 96"],
+      ["Setup", "Guitar · infinite-sustain pedal · effects chain"],
     ],
     soundcloud: [{ url: "https://soundcloud.com/getschwifty/sacha-locke", height: 166 }],
   },
@@ -253,6 +257,11 @@ export const projects: Project[] = [
       { src: "/images/4-48-psychose/03.jpg", alt: "The stage structure lit in violet in 4.48 Psychose" },
     ],
     youtube: "mN-v-RCEi34",
+    soundcloud: [
+      { url: "https://soundcloud.com/getschwifty/448-intro" },
+      { url: "https://soundcloud.com/getschwifty/um-antwort-wird-gebeten" },
+      { url: "https://soundcloud.com/getschwifty/zopiklon" },
+    ],
     links: [
       { label: "Watch on YouTube", url: "https://www.youtube.com/watch?v=mN-v-RCEi34" },
     ],

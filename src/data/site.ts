@@ -10,7 +10,8 @@ export const site = {
   bio:
     "Composer and sound artist from Kalush, western Ukraine; studied in " +
     "Lviv, based between Hamburg and Gießen. Makes sound for performance, " +
-    "theatre and installation, performs live as Magdeburg 96, and builds " +
+    "theatre and installation, performs live as Magdeburg 96 and " +
+    "kaluskie eksportowe, and builds " +
     "instruments where the improvising partner is a living system — an EEG " +
     "signal, a plant, a room.",
 

@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import { byNewest } from "../data/projects";
+import { site } from "../data/site";
 
 // Sourced from the same data as the work pages so the CV never drifts.
 const work = byNewest.filter((p) => p.category === "Instrument");
@@ -37,13 +38,7 @@ const sections = [
         </span>
       </div>
       <h1 class="display distort">Oleksandr Mykhalskyi</h1>
-      <p class="prose bio">
-        Composer and sound artist from Kalush, western Ukraine; studied in Lviv,
-        based between Hamburg and Gießen.
-        Makes sound for performance, theatre and installation, performs live as
-        Magdeburg 96, and builds instruments where the performer is a living
-        system.
-      </p>
+      <p class="prose bio">{site.bio}</p>
     </header>
 
     {sections.map((sec) => (
