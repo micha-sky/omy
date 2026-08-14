@@ -35,32 +35,32 @@ export const projects: Project[] = [
     category: "Instrument",
     role: "Concept, instrument, performance",
     summary:
-      "A biofeedback instrument where a living system — EEG, plant, room — improvises in place of a second musician.",
+      "A biofeedback instrument in which a living system (EEG, plant, room) improvises in place of a second musician.",
     epigraph: {
       quote:
-        "Five brainwave bands become five voices in a stereo field — the slow brain sings bass, the fast brain sings air.",
-      source: "braino — the mapping",
+        "Five brainwave bands become five voices in a stereo field: the slow brain sings bass, the fast brain sings air.",
+      source: "braino, the mapping",
     },
     body: [
-      "SYMBIONT is an instrument that renders a living system's signal as sound in real time. My work is composition and sound for performance — a fragmenting text, a body in a dreamscape, a collective in catastrophe. SYMBIONT keeps that practice exactly and swaps one performer for a living system: an EEG signal, a plant, a room.",
-      "I stand in the lineage of biofeedback music — Lucier, Rosenboom, Teitelbaum — but where that tradition asked what the body sounds like, SYMBIONT asks what a symbiosis sounds like when the human ear is only one of several nervous systems in the room.",
-      "braino, its engine, listens to the five rhythms a brain runs at the same time — from the slow delta of deep rest to the fast gamma of alert attention — and gives each one a voice in a shared stereo field. The slowest becomes a bass you feel more than hear; the fastest becomes air and shimmer overhead. Every voice is held inside a chosen scale, so what comes out is music rather than data made loud, and the deep drone stays pinned to the root, so the floor always agrees with whatever is happening above it. When a band goes quiet its voice recedes; when attention returns, it steps back into the chord. Nobody presses a key, and yet the thing is unmistakably being played.",
-      "Live, the field opens outward. Around the human band the same engine layers slower, non-human sources, each setting the space and density of the room: satellites passing overhead, the Wi-Fi environment, a shortwave band, the level of the Elbe at St. Pauli, the real positions of sun and moon, the Schumann resonance, the solar wind. Each gets a quiet hand on the stereo field and, when invited, a voice of its own — the moon as a drone that swells only when it is full and risen, the river as filtered water-noise, the cavity as a sub-low throb. A living plant, read through a pair of electrodes, becomes another organism in the mix. The performer is dispersed across all of them.",
-      "That last source matters more than it sounds. The Schumann resonance is a standing wave in the cavity between the earth and the ionosphere, and it sits at roughly the frequency of the alpha rhythm of a calm human brain. When it is allowed to bend the tuning the piece is built from, the person and the planet are not being compared — they are bending the same note.",
-      "The excerpts below are recordings from sessions with the instrument. They move at the speed a nervous system moves: slowly, and never quite repeating. What you are hearing is not a recording of a brain. It is a duet in which one of the players happens to be one.",
-      "The screenshots are the working surface, and it is closer to a score than to a control panel: five bands drawn live, a list of voices they can be given, and a mixer in which the brain, the plant, the satellites, the river and the cavity each get a fader and a place in the stereo field. Preparing a piece means deciding who is allowed into the room, and how loudly — and then leaving them to it.",
-      "The apparatus is intentionally modest: consumer hardware and off-the-shelf parts, and the mapping above is one configuration among many — an instrument, not a fixed patch. An ongoing inquiry into post-human authorship and making music with, rather than about, the living world.",
+      "SYMBIONT is an instrument that turns a living system's signal into sound as it happens. My usual work is composition and sound for performance: a text coming apart on stage, a body in a dreamscape, a collective rehearsing catastrophe. SYMBIONT keeps that practice and swaps one performer out. In place of a second musician there is an EEG signal, or a plant, or a room.",
+      "It sits in the lineage of biofeedback music that runs through Lucier, Rosenboom and Teitelbaum. That tradition asked what the body sounds like. SYMBIONT asks what a symbiosis sounds like, when the human ear is only one of several nervous systems in the room.",
+      "Its engine, braino, listens to the five rhythms a brain runs at once, from the slow delta of deep rest up to the fast gamma of alert attention, and gives each one a voice in a shared stereo field. The slowest becomes a bass you feel more than hear. The fastest becomes air and shimmer overhead. Every voice is held inside a chosen scale, so what comes out is music and not just data made loud, and the deep drone stays pinned to the root so the floor agrees with whatever is happening above it. When a band goes quiet its voice recedes. When attention comes back, it steps into the chord again. Nobody presses a key, and the thing is still unmistakably being played.",
+      "Live, the field opens outward. Around the human band the same engine layers slower, non-human sources that set the space and density of the room: satellites passing overhead, the local Wi-Fi, a shortwave band, the level of the Elbe at St. Pauli, the actual positions of sun and moon, the Schumann resonance, the solar wind. Each one gets a quiet hand on the stereo field and, if invited, a voice of its own. The moon becomes a drone that swells only when it is full and risen, the river becomes filtered water-noise, the cavity a sub-low throb. A living plant, read through a pair of electrodes, is another organism in the mix. The performer ends up dispersed across all of them.",
+      "That last source matters more than it sounds. The Schumann resonance is a standing wave in the cavity between the earth and the ionosphere, and it sits at roughly the frequency of the alpha rhythm of a calm human brain. When I let it bend the tuning the piece is built from, the person and the planet aren't being compared. They are bending the same note.",
+      "The excerpts below come from sessions with the instrument. They move at the speed a nervous system moves, which is slowly, and never quite repeating. This is not a recording of a brain. It's a duet where one of the players happens to be one.",
+      "The screenshots show the working surface, which is closer to a score than to a control panel: five bands drawn live, a list of voices they can be given, and a mixer where the brain, the plant, the satellites, the river and the cavity each get a fader and a place in the stereo field. Preparing a piece means deciding who is allowed into the room and how loudly, and then leaving them to it.",
+      "The apparatus is deliberately modest: consumer hardware and off-the-shelf parts. The mapping described above is one configuration out of many, so this is an instrument rather than a fixed patch. What the work keeps circling is post-human authorship, and making music with the living world instead of about it.",
     ],
     credits: [
       ["Signal", "EEG (Muse) · plant · room"],
-      ["Engine", "braino — WebAudio / OSC"],
+      ["Engine", "braino (WebAudio / OSC)"],
       ["Live sources", "satellites · Wi-Fi · river · moon · Schumann · solar wind"],
       ["Documentation", "Session excerpts & interface, August 2026"],
       ["Status", "In documentation"],
     ],
     video: "/video/braino-flame.mp4",
     videos: [
-      { src: "/video/braino-water.mp4", caption: "braino — live visual" },
+      { src: "/video/braino-water.mp4", caption: "braino, live visual" },
     ],
     audio: [
       { title: "Session excerpt I", src: "/audio/braino-session-1.mp3" },
@@ -71,12 +71,12 @@ export const projects: Project[] = [
       {
         src: "/images/symbiont/01-bands.jpg",
         alt: "The braino interface: five brainwave bands drawn live, with the list of voices open",
-        caption: "Five bands, live — each drawn twice, as a level and as its own recent history. The open list is the voice a band can be given: drone, ocean, singing bowls, choir, symbiont.",
+        caption: "Five bands, live, each drawn twice: once as a level, once as its own recent history. The open list holds the voices a band can be given: drone, ocean, singing bowls, choir, symbiont.",
       },
       {
         src: "/images/symbiont/02-mixer.jpg",
         alt: "The braino mixer, with faders for brain, plant, satellites, Wi-Fi, shortwave, river, celestial and Schumann",
-        caption: "The mixer. Brain, plant, satellites, Wi-Fi, shortwave, river, sun and moon, Schumann cavity — one fader and one position in the stereo field each.",
+        caption: "The mixer. Brain, plant, satellites, Wi-Fi, shortwave, river, sun and moon, Schumann cavity. Each one gets a fader and a position in the stereo field.",
       },
       {
         src: "/images/symbiont/03-sources.jpg",
@@ -86,17 +86,17 @@ export const projects: Project[] = [
       {
         src: "/images/symbiont/04-sky.jpg",
         alt: "The celestial strip in braino, showing the real positions of sun and moon over Hamburg",
-        caption: "The sky over Hamburg at the time of playing — sun at 50°, a 4% moon at 39°. The moon's voice only swells when it is up.",
+        caption: "The sky over Hamburg at the time of playing: sun at 50°, a 4% moon at 39°. The moon's voice only swells when it is up.",
       },
       {
         src: "/images/symbiont/05-synth.jpg",
         alt: "The braino synth panel with tuning, sampler and arpeggiator settings",
-        caption: "Tuning and voicing: the temperament, the scale, the root note — the frame the live cavity is then allowed to bend.",
+        caption: "Tuning and voicing: the temperament, the scale, the root note. This is the frame the live cavity is then allowed to bend.",
       },
       {
         src: "/images/symbiont/06-effects.jpg",
         alt: "The braino effects panel with reverb, binaural beats, bilateral panning and filter settings",
-        caption: "The room the voices are heard in — reverb, binaural beating, a slow bilateral pan that moves the whole field from ear to ear.",
+        caption: "The room the voices are heard in: reverb, binaural beating, a slow bilateral pan that moves the whole field from ear to ear.",
       },
     ],
     todo: "session excerpt titles & dates — placeholders",
@@ -109,10 +109,10 @@ export const projects: Project[] = [
     yearLabel: "2025",
     category: "Live performance",
     role: "Live set (as kaluskie eksportowe)",
-    summary: "A live set at the BAARM Sommerfest in Hamburg, as kaluskie eksportowe — solo guitar through an infinite-sustain pedal and effects chain.",
+    summary: "A live set at the BAARM Sommerfest in Hamburg, as kaluskie eksportowe: solo guitar through an infinite-sustain pedal and effects chain.",
     body: [
-      "A live set performed as kaluskie eksportowe at the BAARM Sommerfest — the summer festival of the BAARM artist-and-workshop collective in Hamburg, a former motorway rest stop now given over to studios for art, design, music and craft.",
-      "Solo guitar, played through an infinite-sustain pedal into a live effects chain — single notes held and layered into sustained fields.",
+      "A live set performed as kaluskie eksportowe at the BAARM Sommerfest, the summer festival of the BAARM artist-and-workshop collective in Hamburg. BAARM is a former motorway rest stop, now given over to studios for art, design, music and craft.",
+      "Solo guitar, played through an infinite-sustain pedal into a live effects chain. Single notes are held and layered into sustained fields.",
     ],
     credits: [
       ["Where", "BAARM, Marschnerstraße 21, Hamburg"],
@@ -132,7 +132,7 @@ export const projects: Project[] = [
     yearLabel: "2025",
     category: "Live performance",
     role: "Live set (as Magdeburg 96)",
-    summary: "A live set at the BYE BYE RAUM closing, 18 January 2025 — solo guitar through an infinite-sustain pedal and effects chain.",
+    summary: "A live set at the BYE BYE RAUM closing, 18 January 2025: solo guitar through an infinite-sustain pedal and effects chain.",
     body: [
       "A live set performed as Magdeburg 96 at the BYE BYE RAUM closing night, 18 January 2025. Solo guitar, played through an infinite-sustain pedal into a live effects chain.",
     ],
@@ -153,7 +153,7 @@ export const projects: Project[] = [
     yearLabel: "2024",
     category: "Live performance",
     role: "Live set (as Magdeburg 96)",
-    summary: "A live set at Locke, 20 June 2024 — solo guitar through an infinite-sustain pedal and effects chain.",
+    summary: "A live set at Locke, 20 June 2024: solo guitar through an infinite-sustain pedal and effects chain.",
     body: ["A live set performed as Magdeburg 96 at Locke, 20 June 2024. Solo guitar, played through an infinite-sustain pedal into a live effects chain."],
     credits: [
       ["Where", "Locke"],
@@ -174,7 +174,7 @@ export const projects: Project[] = [
       "Sound for a collective learning-video installation with the Chto Delat collective.",
     body: [
       "A collective learning-video installation grown out of the “Clash of Elements” summer school at HFBK Hamburg, conceived with the Chto Delat collective (Dmitry Vilensky).",
-      "Portraits of participants — HFBK students alongside cultural workers who had fled Russia — are staged against their own shadows, exploring energy, catastrophe, and the fragility of collective futures.",
+      "The participants, HFBK students alongside cultural workers who had fled Russia, are portrayed against their own shadows, working through energy, catastrophe and the fragility of collective futures.",
     ],
     credits: [
       ["With", "Chto Delat (Dmitry Vilensky)"],
@@ -233,10 +233,10 @@ export const projects: Project[] = [
     category: "Event",
     role: "Organisation, 3D scan, performance, poster design",
     summary:
-      "A solidarity fundraiser for Ukraine at Kunsthaus Hamburg — organised, performed, 3D-scanned and designed.",
+      "A solidarity fundraiser for Ukraine at Kunsthaus Hamburg: organised, performed, 3D-scanned and designed.",
     body: [
-      "A fundraising concert for the people of Ukraine, held in the Halle of Kunsthaus Hamburg on 26 March 2022 — a collective response to Russia's invasion. All entrance fees and bar profits were donated: half directly to people in Ukrainian cities, half to NGOs supporting relief efforts.",
-      "I co-organised the evening and contributed across it — 3D scanning, performance, and the poster design — for a line-up of Hamburg live-electronic and DJ acts. The video was made in collaboration with Julian Huelser.",
+      "A fundraising concert for the people of Ukraine, held in the Halle of Kunsthaus Hamburg on 26 March 2022 as a collective response to Russia's invasion. All entrance fees and bar profits were donated: half went directly to people in Ukrainian cities, half to NGOs supporting relief efforts.",
+      "I co-organised the evening and worked across it (3D scanning, performance, the poster design) for a line-up of Hamburg live-electronic and DJ acts. The video was made together with Julian Huelser.",
     ],
     credits: [
       ["Where", "Kunsthaus Hamburg (Halle)"],
@@ -280,7 +280,7 @@ export const projects: Project[] = [
       source: "Caroline Criado-Perez",
     },
     body: [
-      "Sarah Kane's fragmentary text lets us look into the mind of a woman in psychic crisis, wrestling with the bitter incompatibility of body and soul. Against the backdrop of a medicine that treats the male body as the norm, we follow — through a weave of sound and poetic language — the trail of the wrongly diagnosed: the “hysterical”, the “invisible women”. Enraged, we rattle at the patriarchal system and pull the invisible into the spotlight.",
+      "Sarah Kane's fragmentary text lets us look into the mind of a woman in psychic crisis, wrestling with the bitter incompatibility of body and soul. Against the backdrop of a medicine that treats the male body as the norm, and through a weave of sound and poetic language, we follow the trail of the wrongly diagnosed: the “hysterical”, the “invisible women”. Enraged, we rattle at the patriarchal system and pull the invisible into the spotlight.",
       "Staged as a duet between one actress, one musician, and one text: a Studienprojekt at Theaterakademie Hamburg.",
     ],
     credits: [

@@ -11,13 +11,13 @@ export const site = {
     "Composer and sound artist from Kalush, western Ukraine; studied in " +
     "Lviv, based between Hamburg and Gießen. Makes sound for performance, " +
     "theatre and installation, performs live as Magdeburg 96 and " +
-    "kaluskie eksportowe, and builds " +
-    "instruments where the improvising partner is a living system — an EEG " +
-    "signal, a plant, a room. Earlier a doctoral researcher at the National " +
-    "Academy of Sciences of Ukraine, he built the environmental models inside " +
-    "the EU's nuclear-emergency decision-support system; SYMBIONT turns the " +
-    "same instinct inside out, using scientific tools to make data heard " +
-    "rather than acted on.",
+    "kaluskie eksportowe, and builds instruments in which the improvising " +
+    "partner is a living system: an EEG signal, a plant, a room. Before " +
+    "that he was a doctoral researcher at the National Academy of Sciences " +
+    "of Ukraine, where he built the environmental models inside the EU's " +
+    "nuclear-emergency decision-support system. SYMBIONT turns the same " +
+    "instinct inside out and uses scientific tools to make data heard " +
+    "instead of acted on.",
 
   // Education & research — the scientific-research background (Academy of
   // Sciences / JRODOS). Rendered as its own CV section; framed as method,
