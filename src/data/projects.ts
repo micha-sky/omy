@@ -15,7 +15,7 @@ export type Project = {
   epigraph?: { quote: string; source: string };
   body: string[];      // paragraphs on the detail page
   credits: [string, string][];
-  images?: { src: string; alt: string }[];
+  images?: { src: string; alt: string; caption?: string }[];
   audio?: { title: string; src: string }[];
   soundcloud?: { url: string; height?: number }[];
   youtube?: string;    // YouTube video id, embedded 16:9
@@ -44,20 +44,62 @@ export const projects: Project[] = [
     body: [
       "SYMBIONT is an instrument that renders a living system's signal as sound in real time. My work is composition and sound for performance — a fragmenting text, a body in a dreamscape, a collective in catastrophe. SYMBIONT keeps that practice exactly and swaps one performer for a living system: an EEG signal, a plant, a room.",
       "I stand in the lineage of biofeedback music — Lucier, Rosenboom, Teitelbaum — but where that tradition asked what the body sounds like, SYMBIONT asks what a symbiosis sounds like when the human ear is only one of several nervous systems in the room.",
-      "braino, its engine, listens to five brainwave bands — delta, theta, alpha, beta, gamma, slowest to fastest — and gives each one a voice in a shared stereo field. A band's power becomes a pitch, snapped to the notes of a chosen scale so the result is musical rather than a siren: the slowest rhythm of the brain sings the sub-bass, the fastest becomes air and shimmer overhead. The deep drone is pinned to the root and fifth so the floor always agrees with the harmony above it, while alpha — the band of relaxed attention — is set free as the melody. A slow chord progression re-voices the pads every few seconds, and a gate lowers whichever bands have gone still, so two or three active voices form a chord instead of five forming a cluster. It runs in the browser — offline from a CSV, or live over OSC from a consumer EEG headband.",
-      "Live, the field opens outward. Around the human band the same engine layers slow structural sources — non-human systems that set the room's space and density: satellites passing overhead, the Wi-Fi environment, a shortwave band, a river gauge, the real positions of sun and moon, the Schumann resonance of the ionospheric cavity, the solar wind. Each gets a subtle hand on the stereo bus and, when invited, a voice of its own — the moon as a slow drone that swells only when it is full and risen, the river as filtered water-noise, the cavity as a sub-low throb at 7.83 Hz. A living plant, read through a Pocket SCÍON, becomes another organism in the mix. The performer is dispersed across all of them.",
+      "braino, its engine, listens to the five rhythms a brain runs at the same time — from the slow delta of deep rest to the fast gamma of alert attention — and gives each one a voice in a shared stereo field. The slowest becomes a bass you feel more than hear; the fastest becomes air and shimmer overhead. Every voice is held inside a chosen scale, so what comes out is music rather than data made loud, and the deep drone stays pinned to the root, so the floor always agrees with whatever is happening above it. When a band goes quiet its voice recedes; when attention returns, it steps back into the chord. Nobody presses a key, and yet the thing is unmistakably being played.",
+      "Live, the field opens outward. Around the human band the same engine layers slower, non-human sources, each setting the space and density of the room: satellites passing overhead, the Wi-Fi environment, a shortwave band, the level of the Elbe at St. Pauli, the real positions of sun and moon, the Schumann resonance, the solar wind. Each gets a quiet hand on the stereo field and, when invited, a voice of its own — the moon as a drone that swells only when it is full and risen, the river as filtered water-noise, the cavity as a sub-low throb. A living plant, read through a pair of electrodes, becomes another organism in the mix. The performer is dispersed across all of them.",
+      "That last source matters more than it sounds. The Schumann resonance is a standing wave in the cavity between the earth and the ionosphere, and it sits at roughly the frequency of the alpha rhythm of a calm human brain. When it is allowed to bend the tuning the piece is built from, the person and the planet are not being compared — they are bending the same note.",
+      "The excerpts below are recordings from sessions with the instrument. They move at the speed a nervous system moves: slowly, and never quite repeating. What you are hearing is not a recording of a brain. It is a duet in which one of the players happens to be one.",
+      "The screenshots are the working surface, and it is closer to a score than to a control panel: five bands drawn live, a list of voices they can be given, and a mixer in which the brain, the plant, the satellites, the river and the cavity each get a fader and a place in the stereo field. Preparing a piece means deciding who is allowed into the room, and how loudly — and then leaving them to it.",
       "The apparatus is intentionally modest: consumer hardware and off-the-shelf parts, and the mapping above is one configuration among many — an instrument, not a fixed patch. An ongoing inquiry into post-human authorship and making music with, rather than about, the living world.",
     ],
     credits: [
       ["Signal", "EEG (Muse) · plant · room"],
       ["Engine", "braino — WebAudio / OSC"],
       ["Live sources", "satellites · Wi-Fi · river · moon · Schumann · solar wind"],
+      ["Documentation", "Session excerpts & interface, August 2026"],
       ["Status", "In documentation"],
     ],
     video: "/video/braino-flame.mp4",
     videos: [
       { src: "/video/braino-water.mp4", caption: "braino — live visual" },
     ],
+    audio: [
+      { title: "Session excerpt I", src: "/audio/braino-session-1.mp3" },
+      { title: "Session excerpt II", src: "/audio/braino-session-2.mp3" },
+      { title: "Session excerpt III", src: "/audio/braino-session-3.mp3" },
+    ],
+    images: [
+      {
+        src: "/images/symbiont/01-bands.jpg",
+        alt: "The braino interface: five brainwave bands drawn live, with the list of voices open",
+        caption: "Five bands, live — each drawn twice, as a level and as its own recent history. The open list is the voice a band can be given: drone, ocean, singing bowls, choir, symbiont.",
+      },
+      {
+        src: "/images/symbiont/02-mixer.jpg",
+        alt: "The braino mixer, with faders for brain, plant, satellites, Wi-Fi, shortwave, river, celestial and Schumann",
+        caption: "The mixer. Brain, plant, satellites, Wi-Fi, shortwave, river, sun and moon, Schumann cavity — one fader and one position in the stereo field each.",
+      },
+      {
+        src: "/images/symbiont/03-sources.jpg",
+        alt: "The braino sources panel, listing satellites, Wi-Fi, shortwave, river gauge, celestial and Schumann inputs",
+        caption: "Choosing who is in the room: satellites overhead, the local Wi-Fi, a shortwave band, the Elbe gauge at St. Pauli, sun and moon, the cavity, the solar wind.",
+      },
+      {
+        src: "/images/symbiont/04-sky.jpg",
+        alt: "The celestial strip in braino, showing the real positions of sun and moon over Hamburg",
+        caption: "The sky over Hamburg at the time of playing — sun at 50°, a 4% moon at 39°. The moon's voice only swells when it is up.",
+      },
+      {
+        src: "/images/symbiont/05-synth.jpg",
+        alt: "The braino synth panel with tuning, sampler and arpeggiator settings",
+        caption: "Tuning and voicing: the temperament, the scale, the root note — the frame the live cavity is then allowed to bend.",
+      },
+      {
+        src: "/images/symbiont/06-effects.jpg",
+        alt: "The braino effects panel with reverb, binaural beats, bilateral panning and filter settings",
+        caption: "The room the voices are heard in — reverb, binaural beating, a slow bilateral pan that moves the whole field from ear to ear.",
+      },
+    ],
+    todo: "session excerpt titles & dates — placeholders",
     featured: true,
   },
   {

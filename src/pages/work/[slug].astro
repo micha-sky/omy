@@ -95,7 +95,16 @@ const scEmbed = (url: string) =>
         {p.images && (
           <div class="d-shots">
             {p.images.map((im) => (
-              <img src={im.src} alt={im.alt} loading="eager" decoding="async" />
+              <figure class:list={["shot", { cap: !!im.caption }]}>
+                {im.caption ? (
+                  <a href={im.src} target="_blank" rel="noopener" title="Open full size">
+                    <img src={im.src} alt={im.alt} loading="eager" decoding="async" />
+                  </a>
+                ) : (
+                  <img src={im.src} alt={im.alt} loading="eager" decoding="async" />
+                )}
+                {im.caption && <figcaption class="mono">{im.caption}</figcaption>}
+              </figure>
             ))}
           </div>
         )}
@@ -183,9 +192,23 @@ const scEmbed = (url: string) =>
   .track-title { grid-area: title; text-transform: none; letter-spacing: 0.02em; font-size: 0.9rem; color: var(--ink); }
   .track audio { grid-area: audio; width: 100%; max-width: 30rem; height: 2.2rem; margin-top: 0.4rem; }
 
-  .d-shots { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 2rem 0; }
-  .d-shots img { width: 100%; object-fit: cover; }
-  .d-shots img:only-child { grid-column: 1 / -1; }
+  .d-shots { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 0.75rem; margin: 2rem 0; }
+  .d-shots .shot { margin: 0; }
+  .d-shots img { width: 100%; object-fit: cover; display: block; }
+  .d-shots .shot:only-child, .d-shots .shot.cap { grid-column: 1 / -1; }
+  /* Captioned shots (screenshots, stills) get the full column and a line of explanation. */
+  .d-shots .shot.cap { margin-bottom: 1rem; }
+  .d-shots .shot.cap a { display: block; }
+  .d-shots .shot.cap img { border: 1px solid var(--rule); }
+  .d-shots .shot.cap a:hover img { border-color: var(--red); }
+  .d-shots figcaption {
+    margin-top: 0.5rem;
+    color: var(--ink-faint);
+    font-size: 0.8rem;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+  }
 
   .d-links { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-direction: column; gap: 0.5rem; }
   .d-links a:hover { color: var(--red); }
