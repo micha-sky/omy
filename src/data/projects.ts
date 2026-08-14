@@ -103,6 +103,41 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "go-gone",
+    title: "go, gone",
+    sort: "2026-05-21",
+    yearLabel: "2026",
+    category: "Installation",
+    role: "Sound, realisation (with Kastania Waldmueller)",
+    summary:
+      "An interactive sound installation made with Kastania Waldmueller, in her exhibition The Fences at Vorwerkstift Hamburg.",
+    body: [
+      "An interactive sound installation realised with Kastania Waldmueller for her exhibition The Fences at Vorwerkstift Hamburg. The piece is a low form on the gallery floor, about the size of a wide step or a small roof, built out of wood and chipboard recuperated from earlier work.",
+      "Everything about it stays quiet. There is a plain pale form, a cable running to the wall, and nothing in the room that announces itself as equipment.",
+    ],
+    credits: [
+      ["With", "Kastania Waldmueller"],
+      ["Exhibition", "Kastania Waldmueller, The Fences"],
+      ["Where", "Vorwerkstift, Hamburg"],
+      ["When", "21 May 2026"],
+      ["Materials", "Wood and chipboard recuperated from earlier work"],
+      ["Dimensions", "40.5 × 52 × 132.5 cm"],
+    ],
+    images: [
+      {
+        src: "/images/go-gone/01.jpg",
+        alt: "Installation view of The Fences at Vorwerkstift Hamburg, with go, gone on the floor and a painting by Kastania Waldmueller on the wall",
+        caption: "Installation view, The Fences, Vorwerkstift Hamburg. go, gone on the floor, with work by Kastania Waldmueller on the wall.",
+      },
+      {
+        src: "/images/go-gone/02.jpg",
+        alt: "go, gone seen through a doorway: a low pale wood and chipboard form on the gallery floor",
+        caption: "go, gone. 40.5 × 52 × 132.5 cm, wood and chipboard recuperated from earlier work.",
+      },
+    ],
+    todo: "how the interaction works, my exact credit wording, and whether 21 May 2026 is the opening or the full run",
+  },
+  {
     slug: "kaluskie-baarm-sommerfest",
     title: "kaluskie eksportowe @ BAARM Sommerfest",
     sort: "2025-08-30",
