@@ -12,12 +12,14 @@ const live = byNewest.filter((p) => p.category === "Live performance");
 const video = byNewest.filter((p) => p.category === "Music video");
 const events = byNewest.filter((p) => p.category === "Event");
 
+// Order by curatorial weight, not date: the serious sound-for-performance
+// work leads; the live-alias / club sets sit as a secondary block.
 const sections = [
   { title: "Work", items: work },
   { title: "Sound for performance", items: performance },
-  { title: "Live performances", items: live },
-  { title: "Video & VFX", items: video },
   { title: "Events & organising", items: events },
+  { title: "Video & VFX", items: video },
+  { title: "Live performances", items: live },
 ];
 ---
 
@@ -59,6 +61,21 @@ const sections = [
         </dl>
       </section>
     ))}
+
+    <section class="cv-sec">
+      <h2 class="mono sec-title">Education &amp; research</h2>
+      <dl class="entries">
+        {site.education.map((e) => (
+          <div class="entry">
+            <dt class="mono year">{e.period}</dt>
+            <dd>
+              <span class="e-title display distort-light edu">{e.title}</span>
+              {e.detail && <span class="e-note">{e.detail}</span>}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
 
     <p class="contact mono">
       <a href="https://instagram.com/omykhalskyi">@omykhalskyi</a>
@@ -118,6 +135,8 @@ const sections = [
   .entry dd { margin: 0; display: flex; flex-direction: column; gap: 0.35rem; }
   .e-title { font-size: 1.5rem; line-height: 1.1; width: fit-content; }
   .e-title:hover { color: var(--red); }
+  .e-title.edu { cursor: default; }
+  .e-title.edu:hover { color: inherit; }
   .e-role { color: var(--red); }
   .e-note { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5; }
   .e-todo {

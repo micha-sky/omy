@@ -1,5 +1,6 @@
 /node_modules
 *.mp3
+!public/audio/*.mp3
 dist/
 .astro/
 .DS_Store
